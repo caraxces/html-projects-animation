@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fintech 2025</title>
+    <style>
+        /* --- Font Face Definitions --- */
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('font/SVN-Gilroy Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('font/SVN-Gilroy Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('font/SVN-Gilroy SemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('font/SVN-Gilroy Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('font/SVN-Gilroy XBold.otf') format('opentype');
+            font-weight: 800;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('font/SVN-Gilroy Heavy.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('font/SVN-Gilroy Black.otf') format('opentype');
+            font-weight: 950;
+            font-style: normal;
+        }
+
+        /* --- General Styles --- */
+        body {
+            background-color: #3d1f6b;
+            color: #ffffff;
+            font-family: 'Gilroy', sans-serif;
+            font-weight: 400;
+            margin: 0;
+            overflow-x: hidden;
+            background-image: url('images/Asset 1.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        h2 {
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        section {
+            /* padding: 80px 0; */ /* Padding removed as requested */
+            text-align: center;
+            position: relative;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #fdda5f, #f6b84c);
+            color: #4f2900;
+            font-weight: 900;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #fdda5f;
+        }
+        .btn-secondary {
+            background-color: #fdda5f;
+            color: #4f2900;
+        }
+        .btn-outline {
+            background-color: transparent;
+            border-color: #fdda5f;
+            color: #fdda5f;
+            font-weight: 700;
+        }
+        .btn-outline:hover {
+            background-color: #fdda5f;
+            color: #4f2900;
+        }
+        .btn-outline-white {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 10px 30px;
+            font-weight: 700;
+        }
+        .btn-outline-white:hover {
+            background-color: #fff;
+            color: #3d1f6b;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: transparent;
+            padding: 20px 0;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        header nav ul li {
+            margin: 0 25px;
+        }
+        header nav ul li:first-child {
+            margin-left: 0;
+        }
+        header nav ul li a {
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+        header nav ul li a:hover {
+            color: #fdda5f;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            padding: 100px 0;
+            background-image: url('images/Asset 4.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #3d1f6b; /* Add a solid color behind the hero bg */
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-top-art-image {
+            display: block;
+            width: 700px;
+            max-width: 90%;
+            margin-bottom: -20px;
+        }
+        .hero-title-image {
+            max-width: 650px;
+            margin-bottom: 20px;
+        }
+        .hero h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            max-width: 750px;
+            margin: 10px auto 40px;
+            line-height: 1.5;
+            color: #fff;
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .hero-art {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .hero-art-top {
+        display: none;
+        }
+        .hero-art-coins-left {
+            position: absolute;
+            bottom: 80px;
+            left: 10%;
+            width: 300px;
+        }
+        .hero-art-coins-right {
+            position: absolute;
+            bottom: 80px;
+            right: 10%;
+            width: 300px;
+        }
+
+        /* --- Main Content Layout (Info Section - Screen 2) --- */
+        .main-background-wrapper {
+            background-image: url('images/Asset 1.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .main-content-wrapper {
+            /* padding: 80px 0; */ /* Padding removed as requested */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .custom-layout-section {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .info-block {
+            max-width: 50%;
+            text-align: left;
+        }
+        .info-block h3 {
+            color: #fdda5f;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .info-block h4 {
+            color: #ffffff;
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 10px 0 30px 0;
+        }
+        .info-block p {
+            color: #e0d8f5;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* --- Participants Section (Screen 3) --- */
+        .participants-section {
+            /* padding: 80px 0; */ /* Padding removed as requested */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .participants-block {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .participants-cards {
+            flex: 2;
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+        .participants-title {
+            flex: 1;
+            text-align: left;
+        }
+        .participants-title h4 {
+            color: #ffffff;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 1;
+            font-size: 2rem;
+        }
+        .participants-title h4 span {
+            font-size: 4.5rem;
+            font-weight: 900;
+            display: block;
+        }
+        .participants-block .complex-card {
+            background-image: url('images/1.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: relative;
+            padding: 50px 40px;
+            min-height: 200px;
+            box-sizing: border-box;
+        }
+        .participants-block .complex-card .card-tab {
+            position: absolute;
+            top: 3px;
+            right: 35px;
+            color: #fdda5f;
+            font-weight: 800;
+            font-size: 23px;
+        }
+        .participants-block .complex-card .card-body p {
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .participants-block .complex-card .card-body p strong {
+            color: #fdda5f;
+            font-weight: 700;
+        }
+
+        /* --- Conditions Section (Screen 4) --- */
+        .conditions-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .conditions-block {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .conditions-title {
+            flex: 1;
+            text-align: left;
+        }
+        .conditions-title h4 {
+            color: #ffffff;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 1;
+            font-size: 2rem;
+        }
+        .conditions-title h4 span {
+            font-size: 4.5rem;
+            font-weight: 900;
+            display: block;
+        }
+        .conditions-cards {
+            flex: 1.5; /* Make the cards container smaller */
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .card-row {
+            display: flex;
+            gap: 20px;
+        }
+        /* Zic-Zac layout */
+        .card-row:nth-child(2) {
+            position: relative;
+            left: 50px;
+            margin-top: 20px; /* Add vertical space between rows */
+        }
+        .conditions-section .simple-card {
+            background-image: url('images/2.png');
+            background-size: 100% 100%;
+            aspect-ratio: 1 / 1; /* Force square shape */
+            width: 50%;
+            display: flex; /* Use flex to center content */
+            align-items: center;
+            justify-content: center;
+            padding: 30px; /* Inner padding for content */
+            box-sizing: border-box;
+        }
+        .conditions-section .simple-card p {
+            color: #e0d8f5;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+            text-align: justify; /* Justify text as requested */
+        }
+        
+        /* --- Registration Section --- */
+        .registration-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative; /* Needed for the pseudo-element */
+        }
+        .registration-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(221, 137, 27, 0.953), transparent);
+            z-index: 1;
+        }
+        .registration-content {
+            position: relative;
+            z-index: 2; /* Ensure content is above the gradient */
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .registration-title h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin: 0;
+            color: #fff;
+        }
+        .registration-title h4 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 0 0 15px 0;
+            color: #fff;
+        }
+        .registration-title p {
+            font-size: 1rem;
+            color: #e0d8f5;
+            margin-bottom: 50px;
+        }
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .step-number {
+            font-size: 10rem;
+            font-weight: 200;
+            line-height: 1;
+            position: relative;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+        }
+        /* Glowing effect */
+        .step-number::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            -webkit-text-stroke: 1px rgba(255, 215, 0, 0); /* Transparent stroke */
+            background-image: linear-gradient(120deg, rgba(253,218,95,0) 30%, rgba(253,218,95,0.8) 50%, rgba(253,218,95,0) 70%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: glow-scan 4s linear infinite;
+        }
+        @keyframes glow-scan {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .step-text h5 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fdda5f;
+            margin: 0 0 5px 0;
+        }
+        .step-text span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        .registration-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* --- Criteria Section --- */
+        .criteria-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .criteria-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align title to the right */
+        }
+        .criteria-title {
+            text-align: right;
+            max-width: 450px;
+        }
+        .criteria-title h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin: 0;
+            color: #fff;
+        }
+        .criteria-title h4 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 0 0 15px 0;
+            color: #fff;
+        }
+        .criteria-title p {
+            font-size: 0.9rem;
+            color: #e0d8f5;
+        }
+        .criteria-items-container {
+            position: relative;
+            width: 100%;
+            height: 450px; /* Give container a fixed height for positioning */
+            margin-top: 20px; /* Space between title and items */
+        }
+        .criterion-item {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            transition: transform 0.3s ease;
+        }
+        .criterion-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/Asset 7.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+        }
+        .criterion-item:hover {
+            transform: scale(1.1);
+        }
+        /* Staggered positioning */
+        .item-1 { top: 0; left: 0; }
+        .item-2 { top: 0; left: 25%; }
+        .item-3 { top: 0; left: 50%; }
+        .item-4 { top: 0; left: 75%; }
+
+        .item-5 { top: 50%; left: 12.5%; }
+        .item-6 { top: 50%; left: 37.5%; }
+        .item-7 { top: 50%; left: 62.5%; }
+
+        /* --- Timeline Section --- */
+        .timeline-section {
+            padding: 80px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        .timeline-title {
+            text-align: left;
+            width: 90%;
+            max-width: 1200px;
+        }
+        .timeline-title h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin: 0;
+            color: #fff;
+        }
+        .timeline-title h4 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin: 0;
+            color: #fff;
+        }
+        .timeline-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            height: 500px; /* Fixed height for the timeline bg */
+            background-image: url('images/Asset 8.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .timeline-item {
+            position: absolute;
+            color: #fff;
+            padding: 10px;
+            transition: transform 0.3s ease;
+            text-align: right;
+        }
+        .timeline-item:hover {
+            transform: scale(1.1);
+        }
+        .timeline-item span {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fdda5f;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .timeline-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        /* Positioning each timeline item */
+        .item-a { top: 15%; left: 5%; }
+        .item-b { top: 15%; left: 40%; }
+        .item-c { top: 10%; left: 72%; }
+        .item-d { top: 53%; left: 5%; }
+        .item-e { top: 53%; left: 33.6%; }
+        .item-f { top: 53%; left: 72%; }
+        .item-g { top: 78%; left: 5%; }
+
+        .main-content-wrapper, .participants-section, .conditions-section, .registration-section, .criteria-section, .timeline-section, .benefits-section, .commitment-section {
+            background-color: transparent !important;
+        }
+
+        /* --- Benefits Section --- */
+        .benefits-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .benefits-section::before {
+            content: '';
+            position: absolute;
+            top: 25%;
+            left: -25%;
+            width: 150%;
+            height: 250px;
+            background: linear-gradient(to right, rgba(246, 184, 76, 0), rgba(246, 184, 76, 0.3) 50%, rgba(246, 184, 76, 0));
+            z-index: 1;
+            filter: blur(40px);
+            transform: rotate(-5deg);
+        }
+        .benefits-section > .container > * {
+            position: relative;
+            z-index: 2;
+        }
+        .benefits-section .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .benefits-section .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+        .funding-levels {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            text-align: center;
+            margin-bottom: 100px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .level-item .amount {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #f6b84c;
+            text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);
+        }
+        .level-item:nth-child(3) .amount {
+            opacity: 0.5;
+        }
+        .level-item p {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+        .benefits-cards {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .benefit-card {
+            width: 45%;
+            max-width: 480px;
+            position: relative;
+        }
+        .benefit-card-content {
+            background-color: #fdda5f;
+            color: #3d1f6b;
+            padding: 40px;
+            padding-top: 50px;
+            text-align: left;
+            border-radius: 12px;
+            min-height: 220px;
+        }
+        .benefit-card h3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            height: 45px;
+            width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            background-color: #fdda5f;
+            color: #3d1f6b;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
+            z-index: 3;
+            padding-bottom: 10px; /* To push text up a bit */
+        }
+        .benefit-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .benefit-card ul li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 1rem;
+            font-weight: 500;
+            padding-left: 25px;
+            position: relative;
+        }
+        .benefit-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0px;
+            color: #3d1f6b;
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        /* --- Commitment Section --- */
+        .commitment-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .commitment-section .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            line-height: 1.3;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        .commitment-section .section-title h2::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #f6b84c;
+            border-radius: 50%;
+            box-shadow: 0 0 15px 5px rgba(246, 184, 76, 0.7);
+        }
+        .commitment-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        .commitment-card {
+            background-color: rgba(103, 73, 143, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            width: 30%;
+            max-width: 350px;
+            color: #e0d8f5;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: left;
+        }
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+        .partner-logos img {
+            max-height: 50px;
+            filter: grayscale(100%) brightness(1.5);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .partner-logos img:hover {
+            filter: none;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background: linear-gradient(90deg, #fdda5f, #f6b84c);
+            color: #ffffff;
+            padding-top: 200px;
+            padding-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-bg-art {
+            position: absolute;
+            bottom: 100%; /* Position it right above the footer */
+            left: 0;
+            width: 100%;
+            height: 300px; /* Adjust height as needed */
+            margin-bottom: -150px; /* Pull it down to overlap */
+            z-index: 0;
+            pointer-events: none;
+        }
+        .footer-bg-art img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: bottom center;
+        }
+        .site-footer .container {
+            position: relative;
+            z-index: 1;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .footer-contact {
+            width: 35%;
+        }
+        .footer-contact h4 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-top: 0;
+        }
+        .footer-contact ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-contact li {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+         .footer-contact li .icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+        .footer-main {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+        .footer-address {
+            margin-bottom: 30px;
+        }
+        .footer-address h5 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0 0 5px 0;
+        }
+        .footer-address p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .location-icon {
+            font-size: 1.5rem;
+            vertical-align: middle;
+        }
+        .footer-qr-codes {
+            display: flex;
+            gap: 20px;
+        }
+        .qr-code-item img {
+            max-width: 250px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn btn-secondary">ĐĂNG KÝ NGAY</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-art">
+                <!-- These coins will be positioned behind the main content -->
+                <img src="images/Asset 8 - left.png" alt="Floating Coins Left" class="hero-art-coins-left">
+                <img src="images/Asset 8-right.png" alt="Floating Coins Right" class="hero-art-coins-right">
+            </div>
+            <div class="container">
+                <!-- Asset 5 and 6 are now in sequential order inside the main container -->
+                <img src="images/Asset 5.png" alt="Hero Art Top" class="hero-top-art-image">
+                <img src="images/Asset 6.png" alt="Fintech 2025 Title" class="hero-title-image">
+                <h2>CHƯƠNG TRÌNH TUYỂN CHỌN DỰ ÁN ĐỔI MỚI SÁNG TẠO, KHỞI NGHIỆP TRONG LĨNH VỰC CÔNG NGHỆ TÀI CHÍNH NĂM 2025</h2>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">ĐĂNG KÝ DỰ THI</a>
+                    <a href="#" class="btn btn-outline">TÌM HIỂU THÊM</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-background-wrapper">
+            <div class="main-content-wrapper">
+                <section class="custom-layout-section">
+                    
+                    <div class="layout-block info-block">
+                        <h3>Thông tin</h3>
+                        <h4>Chương trình</h4>
+                        <p>Công nghệ tài chính (Fintech) được hiểu là việc áp dụng công nghệ vào hoạt động tài chính - ngân hàng để tạo ra các sản phẩm, dịch vụ mới với hiệu quả cao hơn, chi phí thấp hơn, tiện lợi hơn. Fintech đã và đang thay đổi sâu sắc ngành tài chính - ngân hàng truyền thống, mang lại nhiều lợi ích cho người dùng và nền kinh tế. Với sự phát triển của Internet và các công nghệ mới, Fintech ngày càng có nhiều tiềm năng phát triển, đặc biệt là tại các khu vực đang phát triển như Việt Nam. Theo báo cáo của Appota (12/5/2021) về thị trường ứng dụng di động tại Việt Nam năm 2020, Việt Nam nằm trong top 12 những quốc gia có giá thành Internet rẻ nhất thế giới, đứng thứ 2 Đông Nam Á về tốc độ Internet trên thiết bị di động.</p>
+                        <a href="#" class="btn btn-outline-white">XEM THÊM</a>
+                    </div>
+
+                </section>
+            </div>
+
+            <section class="participants-section">
+                 <div class="layout-block participants-block">
+                    <div class="participants-cards">
+                        <div class="card complex-card">
+                            <div class="card-tab">NHÓM 1</div>
+                            <div class="card-body">
+                                <p><strong>(Giai đoạn tiền ươm tạo):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có <strong>ý tưởng đổi mới sáng tạo</strong> trong lĩnh vực công nghệ tài chính có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
+                            </div>
+                        </div>
+                        <div class="card complex-card">
+                            <div class="card-tab">NHÓM 1</div>
+                            <div class="card-body">
+                                    <p><strong>(Giai đoạn ươm tạo tốc độ):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có các gói giải pháp, hình đổi mới sáng tạo... trong lĩnh vực công nghệ tài chính đã thành phẩm, có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="participants-title">
+                        <h4>ĐỐI TƯỢNG<br><span>THAM GIA</span></h4>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conditions-section">
+                <div class="conditions-block">
+                    <div class="conditions-title">
+                        <h4>Điều Kiện<br><span>THAM GIA</span></h4>
+                    </div>
+                    <div class="conditions-cards">
+                        <div class="card-row">
+                            <div class="card simple-card">
+                                <div class="card-content">
+                                    <p>Có ý tưởng, sản phẩm/giải pháp/dịch vụ/mô hình đổi mới sáng tạo thuộc các ngành trong lĩnh vực phát triển vùng có tiềm năng.</p>
+                                </div>
+                            </div>
+                            <div class="card simple-card">
+                                <div class="card-content">
+                                    <p>Cam kết tham gia đầy đủ các hoạt động hỗ trợ của Chương trình.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-row">
+                            <div class="card simple-card">
+                                <div class="card-content">
+                                    <p>Tổ chức, cá nhân dự tuyển có thể có một hoặc nhiều dự án ứng dụng ở một hoặc nhiều lĩnh vực của chương trình.</p>
+                                </div>
+                            </div>
+                            <div class="card simple-card">
+                                <div class="card-content">
+                                    <p>Các giải pháp đăng ký tham gia không xâm phạm quyền sở hữu trí tuệ theo quy định và chịu trách nhiệm về tính xác thực của thông tin trong hồ sơ tham dự (nếu có).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="registration-section">
+                <div class="registration-content">
+                    <div class="registration-title">
+                        <h3>Hồ sơ đăng ký</h3>
+                        <h4>THAM GIA</h4>
+                        <p>Tiếp nhận hồ sơ gồm Tên dự án - Số điện thoại gửi về email: Fintech@sihub.gov.vn</p>
+                    </div>
+                    <div class="steps-container">
+                        <div class="step-item">
+                            <div class="step-number" data-text="1">1</div>
+                            <div class="step-text">
+                                <h5>PHIẾU ĐĂNG KÝ THAM DỰ CHƯƠNG TRÌNH</h5>
+                                <span>1 BẢN</span>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number" data-text="2">2</div>
+                            <div class="step-text">
+                                <h5>THUYẾT MINH DỰ ÁN</h5>
+                                <span>Tham khảo mẫu của ban tổ chức (1 bản)</span>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number" data-text="3">3</div>
+                            <div class="step-text">
+                                <h5>TÀI LIỆU KHÁC GIỚI THIỆU VỀ DỰ ÁN (NẾU CÓ)</h5>
+                                <span>1 BẢN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="registration-buttons">
+                        <a href="#" class="btn btn-primary">ĐĂNG KÝ DỰ THI</a>
+                        <a href="#" class="btn btn-outline">TẢI MẪU THUYẾT MINH</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="criteria-section">
+                <div class="criteria-content">
+                    <div class="criteria-title">
+                        <h3>TIÊU CHÍ</h3>
+                        <h4>TUYỂN CHỌN</h4>
+                        <p>*Tiêu chí chỉ ứng dụng công nghệ bao gồm: Giao diện ứng dụng; Nền tảng lập trình; Khả năng tương thích người dùng; Chiến lược phát triển công nghệ.</p>
+                    </div>
+
+                    <div class="criteria-items-container">
+                        <div class="criterion-item item-1"><span>Tính sáng tạo</span></div>
+                        <div class="criterion-item item-2"><span>Năng lực<br>thực hiện</span></div>
+                        <div class="criterion-item item-3"><span>Khả năng<br>áp dụng vào trong<br>thực tế</span></div>
+                        <div class="criterion-item item-4"><span>Thị trường<br>tiềm năng</span></div>
+                        <div class="criterion-item item-5"><span>Hiệu quả<br>kinh tế<br>hoặc tác động<br>xã hội</span></div>
+                        <div class="criterion-item item-6"><span>Ứng dụng<br>công nghệ</span></div>
+                        <div class="criterion-item item-7"><span>Mô hình<br>kinh doanh</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <div class="timeline-title">
+                    <h3>HOẠT ĐỘNG CỦA CHƯƠNG TRÌNH</h3>
+                    <h4>VÀ QUY TRÌNH XÉT CHỌN</h4>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline-item item-a"><span>Tháng 4-8/2025</span><p>Liên hệ và kết nối với sở ngành đơn vị</p></div>
+                    <div class="timeline-item item-b"><span>Tháng 8/2025</span><p>Tổ chức buổi tiệc kết nối chuyên gia</p></div>
+                    <div class="timeline-item item-c"><span>Tháng 4-8/2025</span><p>Tiếp nhận hồ sơ</p></div>
+                    <div class="timeline-item item-d"><span>Tháng 9/2025</span><p>Vòng sơ tuyển và huấn luyện kỹ năng</p></div>
+                    <div class="timeline-item item-e"><span>Tháng 9-10/2025</span><p>Vòng tranh đấu và công bố kết quả tuyển chọn</p></div>
+                    <div class="timeline-item item-f"><span>Tháng 11/2025</span><p>Tham gia hoạt động Sở khoa học và Công nghệ tổ chức</p></div>
+                    <div class="timeline-item item-g"><span>2026</span><p>Ươm tạo 35 dự án FINTECH</p></div>
+                </div>
+            </section>
+
+            <section class="benefits-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Quyền lợi và Mức kinh phí hỗ trợ</h2>
+                    </div>
+                    <div class="funding-levels">
+                        <div class="level-item">
+                            <div class="amount">40 Triệu</div>
+                            <p>Dự án, không quá 6 tháng</p>
+                        </div>
+                        <div class="level-item">
+                            <div class="amount">80 Triệu</div>
+                            <p>Dự án, không quá 12 tháng</p>
+                        </div>
+                        <div class="level-item">
+                            <div class="amount">400 Triệu</div>
+                            <p>Dự án, không quá 12 tháng</p>
+                        </div>
+                    </div>
+                    <div class="benefits-cards">
+                        <div class="benefit-card">
+                            <h3>QUYỀN LỢI</h3>
+                            <div class="benefit-card-content">
+                                <ul>
+                                    <li>Được huấn luyện, cố vấn, ươm tạo để hoàn thiện giải pháp</li>
+                                    <li>Được hỗ trợ không gian làm việc chung tại SIHUB.</li>
+                                    <li>Được công bố, quảng bá trên các phương tiện truyền thông của BTC.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="benefit-card">
+                            <h3>QUYỀN LỢI</h3>
+                            <div class="benefit-card-content">
+                                <ul>
+                                    <li>Được tham gia các chương trình hỗ trợ của Sở Khoa học và Công nghệ, các chương trình đào tạo, kết nối.</li>
+                                    <li>Được hỗ trợ một phần kinh phí và có cơ hội được kết nối đầu tư/ tư vấn đăng ký sở hữu trí tuệ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="commitment-section">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Cam kết và Bảo mật</h2>
+                    </div>
+                    <div class="commitment-cards">
+                        <div class="commitment-card">
+                            <p>Ban Tổ chức Chương trình cam kết bảo mật thông tin đối với những hồ sơ, số liệu mà đối tượng dự tuyển yêu cầu bảo mật.</p>
+                        </div>
+                        <div class="commitment-card">
+                            <p>Các tổ chức, cá nhân tự chịu trách nhiệm về quyền sở hữu trí tuệ liên quan đến các hồ sơ tham dự chương trình.</p>
+                        </div>
+                        <div class="commitment-card">
+                            <p>Trong trường hợp phát hiện các vi phạm liên quan đến quyền sở hữu trí tuệ và các hình thức vi phạm khác, Ban Tổ chức chương trình được quyền loại hồ sơ dự tuyển, hủy kết quả công nhận.</p>
+                        </div>
+                    </div>
+                    <div class="partner-logos">
+                        <img src="images/Asset 13.png" alt="Shinhan Future's Lab">
+                        <img src="images/Asset 12.png" alt="BlockBase">
+                        <img src="images/Asset 14.png" alt="New World Fintech">
+                        <img src="images/Asset 13.png" alt="Shinhan Future's Lab">
+                        <img src="images/Asset 12.png" alt="BlockBase">
+                        <img src="images/Asset 14.png" alt="New World Fintech">
+                        <img src="images/Asset 13.png" alt="Shinhan Future's Lab">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <h4>Thông tin liên hệ</h4>
+                    <ul>
+                        <li><span class="icon">&#x1F464;</span>Ms. Vũ Thị Thu Hà</li>
+                        <li><span class="icon">&#x1F3E2;</span>Phòng Đối mới Sáng tạo và Khởi nghiệp</li>
+                        <li><span class="icon">&#x2709;</span>Email: thuha@sihub.gov.vn</li>
+                        <li><span class="icon">&#x260E;</span>Phone: 0974544409</li>
+                    </ul>
+                </div>
+                <div class="footer-main">
+                    <div class="footer-address">
+                        <h5>Sở Khoa học và Công nghệ <span class="location-icon">&#x1F4CD;</span></h5>
+                        <p>Trung tâm Khởi nghiệp sáng tạo Tp. Hồ Chí Minh</p>
+                        <p>273 Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh</p>
+                    </div>
+                    <div class="footer-qr-codes">
+                        <div class="qr-code-item">
+                            <img src="images/Asset 10.png" alt="Quét mã đăng ký">
+                        </div>
+                        <div class="qr-code-item">
+                            <img src="images/Asset 9.png" alt="Tải form đăng ký">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html> 
