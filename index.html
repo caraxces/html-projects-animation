@@ -4,8 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fintech 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'purple-dark': '#3d1f6b',
+                'purple-light': '#e0d8f5',
+                'purple-medium-alpha-50': 'rgba(103, 73, 143, 0.5)',
+                'yellow-primary': '#fdda5f',
+                'yellow-secondary': '#f6b84c',
+                'brown-dark': '#4f2900',
+              },
+              fontFamily: {
+                gilroy: ['Gilroy', 'sans-serif'],
+              },
+              fontWeight: {
+                'normal': '400',
+                'medium': '500',
+                'semibold': '600',
+                'bold': '700',
+                'extrabold': '800',
+                'heavy': '900',
+                'black': '950',
+              },
+              animation: {
+                marquee: 'marquee 40s linear infinite',
+              },
+              keyframes: {
+                marquee: {
+                  '0%': { transform: 'translateX(0%)' },
+                  '100%': { transform: 'translateX(-100%)' },
+                }
+              }
+            }
+          }
+        }
+    </script>
     <style>
-        /* --- Font Face Definitions --- */
+        /* Font Face Definitions */
         @font-face {
             font-family: 'Gilroy';
             src: url('font/SVN-Gilroy Regular.otf') format('opentype');
@@ -49,429 +88,10 @@
             font-style: normal;
         }
 
-        /* --- General Styles --- */
-        body {
-            background-color: #3d1f6b;
-            color: #ffffff;
-            font-family: 'Gilroy', sans-serif;
-            font-weight: 400;
-            margin: 0;
-            overflow-x: hidden;
-            background-image: url('images/Asset 1.png');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        h2 {
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        section {
-            /* padding: 80px 0; */ /* Padding removed as requested */
-            text-align: center;
-            position: relative;
-        }
+        /* General Styles */
+        /* These styles are now handled by Tailwind CSS utility classes */
 
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            font-size: 1rem;
-        }
-        .btn-primary {
-            background: linear-gradient(90deg, #fdda5f, #f6b84c);
-            color: #4f2900;
-            font-weight: 900;
-        }
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #fdda5f;
-        }
-        .btn-secondary {
-            background-color: #fdda5f;
-            color: #4f2900;
-        }
-        .btn-outline {
-            background-color: transparent;
-            border-color: #fdda5f;
-            color: #fdda5f;
-            font-weight: 700;
-        }
-        .btn-outline:hover {
-            background-color: #fdda5f;
-            color: #4f2900;
-        }
-        .btn-outline-white {
-            background-color: transparent;
-            border: 2px solid #fff;
-            color: #fff;
-            padding: 10px 30px;
-            font-weight: 700;
-        }
-        .btn-outline-white:hover {
-            background-color: #fff;
-            color: #3d1f6b;
-        }
-
-        /* --- Header --- */
-        header {
-            background-color: transparent;
-            padding: 20px 0;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        header nav ul li {
-            margin: 0 25px;
-        }
-        header nav ul li:first-child {
-            margin-left: 0;
-        }
-        header nav ul li a {
-            font-weight: 600;
-            transition: color 0.3s ease;
-            font-size: 1.1rem;
-        }
-        header nav ul li a:hover {
-            color: #fdda5f;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            min-height: 100vh;
-            padding: 100px 0;
-            background-image: url('images/Asset 4.png');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #3d1f6b; /* Add a solid color behind the hero bg */
-        }
-        .hero .container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .hero-top-art-image {
-            display: block;
-            width: 700px;
-            max-width: 90%;
-            margin-bottom: -20px;
-        }
-        .hero-title-image {
-            max-width: 650px;
-            margin-bottom: 20px;
-        }
-        .hero h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            max-width: 750px;
-            margin: 10px auto 40px;
-            line-height: 1.5;
-            color: #fff;
-        }
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .hero-art {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .hero-art-top {
-        display: none;
-        }
-        .hero-art-coins-left {
-            position: absolute;
-            bottom: 80px;
-            left: 10%;
-            width: 300px;
-        }
-        .hero-art-coins-right {
-            position: absolute;
-            bottom: 80px;
-            right: 10%;
-            width: 300px;
-        }
-
-        /* --- Main Content Layout (Info Section - Screen 2) --- */
-        .main-background-wrapper {
-            background-image: url('images/Asset 1.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            position: relative;
-        }
-
-        .main-content-wrapper {
-            /* padding: 80px 0; */ /* Padding removed as requested */
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .custom-layout-section {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .info-block {
-            max-width: 50%;
-            text-align: left;
-        }
-        .info-block h3 {
-            color: #fdda5f;
-            font-size: 2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin: 0;
-        }
-        .info-block h4 {
-            color: #ffffff;
-            font-size: 4.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin: 10px 0 30px 0;
-        }
-        .info-block p {
-            color: #e0d8f5;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        /* --- Participants Section (Screen 3) --- */
-        .participants-section {
-            /* padding: 80px 0; */ /* Padding removed as requested */
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .participants-block {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .participants-cards {
-            flex: 2;
-            display: flex;
-            flex-direction: row;
-            gap: 30px;
-        }
-        .participants-title {
-            flex: 1;
-            text-align: left;
-        }
-        .participants-title h4 {
-            color: #ffffff;
-            font-weight: 500;
-            text-transform: uppercase;
-            line-height: 1;
-            font-size: 2rem;
-        }
-        .participants-title h4 span {
-            font-size: 4.5rem;
-            font-weight: 900;
-            display: block;
-        }
-        .participants-block .complex-card {
-            background-image: url('images/1.png');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            position: relative;
-            padding: 50px 40px;
-            min-height: 200px;
-            box-sizing: border-box;
-        }
-        .participants-block .complex-card .card-tab {
-            position: absolute;
-            top: 3px;
-            right: 35px;
-            color: #fdda5f;
-            font-weight: 800;
-            font-size: 23px;
-        }
-        .participants-block .complex-card .card-body p {
-            color: #fff;
-            font-size: 18px;
-            line-height: 1.7;
-            margin: 0;
-        }
-        .participants-block .complex-card .card-body p strong {
-            color: #fdda5f;
-            font-weight: 700;
-        }
-
-        /* --- Conditions Section (Screen 4) --- */
-        .conditions-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .conditions-block {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .conditions-title {
-            flex: 1;
-            text-align: left;
-        }
-        .conditions-title h4 {
-            color: #ffffff;
-            font-weight: 500;
-            text-transform: uppercase;
-            line-height: 1;
-            font-size: 2rem;
-        }
-        .conditions-title h4 span {
-            font-size: 4.5rem;
-            font-weight: 900;
-            display: block;
-        }
-        .conditions-cards {
-            flex: 1.5; /* Make the cards container smaller */
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .card-row {
-            display: flex;
-            gap: 20px;
-        }
-        /* Zic-Zac layout */
-        .card-row:nth-child(2) {
-            position: relative;
-            left: 50px;
-            margin-top: 20px; /* Add vertical space between rows */
-        }
-        .conditions-section .simple-card {
-            background-image: url('images/2.png');
-            background-size: 100% 100%;
-            aspect-ratio: 1 / 1; /* Force square shape */
-            width: 50%;
-            display: flex; /* Use flex to center content */
-            align-items: center;
-            justify-content: center;
-            padding: 30px; /* Inner padding for content */
-            box-sizing: border-box;
-        }
-        .conditions-section .simple-card p {
-            color: #e0d8f5;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin: 0;
-            text-align: justify; /* Justify text as requested */
-        }
-        
-        /* --- Registration Section --- */
-        .registration-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative; /* Needed for the pseudo-element */
-        }
-        .registration-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(221, 137, 27, 0.953), transparent);
-            z-index: 1;
-        }
-        .registration-content {
-            position: relative;
-            z-index: 2; /* Ensure content is above the gradient */
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .registration-title h3 {
-            font-size: 2rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            margin: 0;
-            color: #fff;
-        }
-        .registration-title h4 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin: 0 0 15px 0;
-            color: #fff;
-        }
-        .registration-title p {
-            font-size: 1rem;
-            color: #e0d8f5;
-            margin-bottom: 50px;
-        }
-        .steps-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        .step-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        /* Custom animation for registration section */
         .step-number {
             font-size: 10rem;
             font-weight: 200;
@@ -480,13 +100,12 @@
             color: transparent;
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
         }
-        /* Glowing effect */
         .step-number::before {
             content: attr(data-text);
             position: absolute;
             left: 0;
             top: 0;
-            -webkit-text-stroke: 1px rgba(255, 215, 0, 0); /* Transparent stroke */
+            -webkit-text-stroke: 1px rgba(255, 215, 0, 0);
             background-image: linear-gradient(120deg, rgba(253,218,95,0) 30%, rgba(253,218,95,0.8) 50%, rgba(253,218,95,0) 70%);
             background-size: 200% 100%;
             -webkit-background-clip: text;
@@ -497,670 +116,217 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-        .step-text h5 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fdda5f;
-            margin: 0 0 5px 0;
-        }
-        .step-text span {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #fff;
-        }
-        .registration-buttons {
-            display: flex;
-            gap: 20px;
-        }
 
-        /* --- Criteria Section --- */
-        .criteria-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .criteria-content {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end; /* Align title to the right */
-        }
-        .criteria-title {
-            text-align: right;
-            max-width: 450px;
-        }
-        .criteria-title h3 {
-            font-size: 2rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            margin: 0;
-            color: #fff;
-        }
-        .criteria-title h4 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin: 0 0 15px 0;
-            color: #fff;
-        }
-        .criteria-title p {
-            font-size: 0.9rem;
-            color: #e0d8f5;
-        }
-        .criteria-items-container {
-            position: relative;
-            width: 100%;
-            height: 450px; /* Give container a fixed height for positioning */
-            margin-top: 20px; /* Space between title and items */
-        }
-        .criterion-item {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            font-weight: 600;
-            font-size: 1.1rem;
-            line-height: 1.4;
-            transition: transform 0.3s ease;
-        }
-        .criterion-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/Asset 7.png');
-            background-size: contain;
-            background-repeat: no-repeat;
+        body {
+            background-color: #3d1f6b;
+            background-image: url("data:image/svg+xml;utf8,<svg width='400' height='600' viewBox='0 0 400 600' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' fill='#3d1f6b'/><path d='M 0,0.0 Q 100.0,150.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,0.0 Q 300.0,150.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,6.0 Q 104.99167083234141,153.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,6.0 Q 295.0083291676586,153.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,12.0 Q 109.93346653975306,156.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,12.0 Q 290.06653346024694,156.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,18.0 Q 114.77601033306698,159.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,18.0 Q 285.223989666933,159.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,24.0 Q 119.47091711543253,162.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,24.0 Q 280.52908288456746,162.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,30.0 Q 123.97127693021015,165.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,30.0 Q 276.02872306978986,165.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,36.0 Q 128.23212366975176,168.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,36.0 Q 271.7678763302482,168.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,42.0 Q 132.21088436188455,171.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,42.0 Q 267.78911563811545,171.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,48.0 Q 135.86780454497614,174.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,48.0 Q 264.13219545502386,174.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,54.0 Q 139.16634548137418,177.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,54.0 Q 260.83365451862585,177.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,60.0 Q 142.0735492403948,180.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,60.0 Q 257.9264507596052,180.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,66.0 Q 144.56036800307177,183.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,66.0 Q 255.43963199692823,183.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,72.0 Q 146.6019542983613,186.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,72.0 Q 253.3980457016387,186.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,78.0 Q 148.17790927085966,189.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,78.0 Q 251.82209072914034,189.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,84.0 Q 149.272486499423,192.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,84.0 Q 250.727513500577,192.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,90.0 Q 149.87474933020272,195.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,90.0 Q 250.12525066979728,195.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,96.0 Q 149.97868015207524,198.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,96.0 Q 250.02131984792476,198.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,102.0 Q 149.58324052262344,201.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,102.0 Q 250.41675947737656,201.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,108.0 Q 148.69238154390976,204.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,108.0 Q 251.30761845609024,204.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,114.0 Q 147.31500438437072,207.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,114.0 Q 252.68499561562928,207.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,120.0 Q 145.4648713412841,210.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,120.0 Q 254.5351286587159,210.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,126.0 Q 143.16046833244368,213.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,126.0 Q 256.83953166755634,213.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,132.0 Q 140.42482019097952,216.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,132.0 Q 259.5751798090205,216.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,138.0 Q 137.285260608836,219.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,138.0 Q 262.714739391164,219.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,144.0 Q 133.77315902755754,222.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,144.0 Q 266.22684097244246,222.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,150.0 Q 129.92360720519784,225.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,150.0 Q 270.07639279480213,225.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,156.0 Q 125.77506859107321,228.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,156.0 Q 274.2249314089268,228.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,162.0 Q 121.36899401169148,231.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,162.0 Q 278.6310059883085,231.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,168.0 Q 116.74940750779525,234.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,168.0 Q 283.25059249220476,234.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,174.0 Q 111.96246646069912,237.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,174.0 Q 288.03753353930085,237.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,180.0 Q 107.05600040299336,240.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,180.0 Q 292.9439995970066,240.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,186.0 Q 102.07903312166452,243.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,186.0 Q 297.9209668783355,243.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,192.0 Q 97.081292828621,246.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,192.0 Q 302.91870717137897,246.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,198.0 Q 92.11271529283759,249.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,198.0 Q 307.8872847071624,249.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,204.0 Q 87.22294489865844,252.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,204.0 Q 312.77705510134155,252.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,210.0 Q 82.46083861551901,255.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,210.0 Q 317.53916138448096,255.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,216.0 Q 77.87397783525738,258.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,216.0 Q 322.1260221647426,258.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,222.0 Q 73.50819295457532,261.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,222.0 Q 326.4918070454247,261.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,228.0 Q 69.40710545286406,264.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,228.0 Q 330.5928945471359,264.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,234.0 Q 65.6116920408013,267.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,234.0 Q 334.3883079591987,267.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,240.0 Q 62.15987523460359,270.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,240.0 Q 337.8401247653964,270.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,246.0 Q 59.086144446779485,273.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,246.0 Q 340.9138555532205,273.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,252.0 Q 56.42121137932059,276.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,252.0 Q 343.5787886206794,276.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,258.0 Q 54.191703162527254,279.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,258.0 Q 345.80829683747277,279.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,264.0 Q 52.4198963055242,282.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,264.0 Q 347.5801036944758,282.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,270.0 Q 51.12349411674515,285.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,270.0 Q 348.8765058832548,285.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,276.0 Q 50.315449818326776,288.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,276.0 Q 349.6845501816732,288.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,282.0 Q 50.00383712179496,291.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,282.0 Q 349.99616287820504,291.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,288.0 Q 50.191769558207966,294.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,288.0 Q 349.80823044179203,294.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,294.0 Q 50.87736936878338,297.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,294.0 Q 349.1226306312166,297.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,300.0 Q 52.053786266843076,300.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,300.0 Q 347.9462137331569,300.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,306.0 Q 53.70926588361338,303.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,306.0 Q 346.2907341163866,303.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,312.0 Q 55.82726721399234,306.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,312.0 Q 344.17273278600766,306.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,318.0 Q 58.38662788880494,309.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,318.0 Q 341.6133721111951,309.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,324.0 Q 61.36177562220064,312.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,324.0 Q 338.63822437779936,312.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,330.0 Q 64.7229837214804,315.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,330.0 Q 335.27701627851957,315.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,336.0 Q 68.43666810638392,318.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,336.0 Q 331.56333189361607,318.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,342.0 Q 72.46572287011813,321.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,342.0 Q 327.53427712988184,321.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,348.0 Q 76.76989102931213,324.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,348.0 Q 323.23010897068787,324.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,354.0 Q 81.3061667584882,327.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,354.0 Q 318.6938332415118,327.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,360.0 Q 86.0292250900537,330.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,360.0 Q 313.9707749099463,330.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,366.0 Q 90.8918747863952,333.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,366.0 Q 309.1081252136048,333.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,372.0 Q 95.84552985912518,336.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,372.0 Q 304.1544701408748,336.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,378.0 Q 100.84069502421748,339.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,378.0 Q 299.1593049757825,339.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,384.0 Q 105.82746024252468,342.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,384.0 Q 294.1725397574753,342.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,390.0 Q 110.75599940439078,345.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,390.0 Q 289.24400059560924,345.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,396.0 Q 115.5770681756689,348.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,396.0 Q 284.4229318243311,348.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,402.0 Q 120.24249603082991,351.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,402.0 Q 279.7575039691701,351.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,408.0 Q 124.70566755693041,354.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,408.0 Q 275.2943324430696,354.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,414.0 Q 128.92198821941,357.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,414.0 Q 271.07801178059003,357.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,420.0 Q 132.84932993593947,360.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,420.0 Q 267.15067006406053,360.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,426.0 Q 136.4484520062938,363.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,426.0 Q 263.5515479937062,363.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,432.0 Q 139.68339319245766,366.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,432.0 Q 260.31660680754237,366.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,438.0 Q 142.52183103142823,369.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,438.0 Q 257.47816896857177,369.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,444.0 Q 145.93540479058134,372.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,444.0 Q 255.06459520941866,372.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,450.0 Q 146.89999883873696,375.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,450.0 Q 253.10000116126304,375.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,456.0 Q 148.3959836015743,378.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,456.0 Q 251.6040163984257,378.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,462.0 Q 149.40841169385,381.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,462.0 Q 250.59158830615,381.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,468.0 Q 149.92716726873024,384.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,468.0 Q 250.07283273126976,384.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,474.0 Q 149.9470670919886,387.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,474.0 Q 250.0529329080114,387.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,480.0 Q 149.4679123311691,390.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,480.0 Q 250.5320876688309,390.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,486.0 Q 148.4944905422543,393.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,486.0 Q 251.5055094577457,393.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,492.0 Q 147.03652783398866,396.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,492.0 Q 252.96347216601134,396.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,498.0 Q 145.10859168781468,399.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,498.0 Q 254.89140831218532,399.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,504.0 Q 142.72994540441402,402.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,504.0 Q 257.270054595586,402.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,510.0 Q 139.9243556311745,405.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,510.0 Q 260.07564436882546,405.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,516.0 Q 136.71985489370567,408.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,516.0 Q 263.2801451062943,408.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,522.0 Q 133.14846150410915,411.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,522.0 Q 266.85153849589085,411.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,528.0 Q 129.24585964458808,414.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,528.0 Q 270.7541403554119,414.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,534.0 Q 125.05104282289423,417.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,534.0 Q 274.94895717710574,417.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,540.0 Q 120.60592426208783,420.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,540.0 Q 279.3940757379122,420.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,546.0 Q 115.9549181174676,423.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,546.0 Q 284.0450818825324,423.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,552.0 Q 111.14449570501239,426.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,552.0 Q 288.8555042949876,426.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,558.0 Q 106.22272117535309,429.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,558.0 Q 293.77727882464694,429.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,564.0 Q 101.23877127266789,432.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,564.0 Q 298.7612287273321,432.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,570.0 Q 96.24244397690954,435.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,570.0 Q 303.75755602309044,435.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,576.0 Q 91.28366093885101,438.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,576.0 Q 308.716339061149,438.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,582.0 Q 86.41196867945288,441.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,582.0 Q 313.5880313205471,441.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,588.0 Q 81.67604353740359,444.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,588.0 Q 318.3239564625964,444.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,594.0 Q 77.12320531123393,447.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,594.0 Q 322.87679468876604,447.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/></svg>");
+            background-size: cover;
             background-position: center;
-            z-index: -1;
         }
-        .criterion-item:hover {
-            transform: scale(1.1);
-        }
-        /* Staggered positioning */
-        .item-1 { top: 0; left: 0; }
-        .item-2 { top: 0; left: 25%; }
-        .item-3 { top: 0; left: 50%; }
-        .item-4 { top: 0; left: 75%; }
-
-        .item-5 { top: 50%; left: 12.5%; }
-        .item-6 { top: 50%; left: 37.5%; }
-        .item-7 { top: 50%; left: 62.5%; }
-
-        /* --- Timeline Section --- */
-        .timeline-section {
-            padding: 80px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-        }
-        .timeline-title {
-            text-align: left;
-            width: 90%;
-            max-width: 1200px;
-        }
-        .timeline-title h3 {
-            font-size: 2rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            margin: 0;
-            color: #fff;
-        }
-        .timeline-title h4 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin: 0;
-            color: #fff;
-        }
-        .timeline-container {
-            position: relative;
-            width: 90%;
-            max-width: 1200px;
-            height: 500px; /* Fixed height for the timeline bg */
-            background-image: url('images/Asset 8.png');
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-        }
-        .timeline-item {
-            position: absolute;
-            color: #fff;
-            padding: 10px;
-            transition: transform 0.3s ease;
-            text-align: right;
-        }
-        .timeline-item:hover {
-            transform: scale(1.1);
-        }
-        .timeline-item span {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #fdda5f;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .timeline-item p {
-            font-size: 0.9rem;
-            margin: 0;
-        }
-        /* Positioning each timeline item */
-        .item-a { top: 15%; left: 5%; }
-        .item-b { top: 15%; left: 40%; }
-        .item-c { top: 10%; left: 72%; }
-        .item-d { top: 53%; left: 5%; }
-        .item-e { top: 53%; left: 33.6%; }
-        .item-f { top: 53%; left: 72%; }
-        .item-g { top: 78%; left: 5%; }
-
-        .main-content-wrapper, .participants-section, .conditions-section, .registration-section, .criteria-section, .timeline-section, .benefits-section, .commitment-section {
-            background-color: transparent !important;
-        }
-
-        /* --- Benefits Section --- */
-        .benefits-section {
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .benefits-section::before {
-            content: '';
-            position: absolute;
-            top: 25%;
-            left: -25%;
-            width: 150%;
-            height: 250px;
-            background: linear-gradient(to right, rgba(246, 184, 76, 0), rgba(246, 184, 76, 0.3) 50%, rgba(246, 184, 76, 0));
-            z-index: 1;
-            filter: blur(40px);
-            transform: rotate(-5deg);
-        }
-        .benefits-section > .container > * {
-            position: relative;
-            z-index: 2;
-        }
-        .benefits-section .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .benefits-section .section-title h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #fff;
-            text-transform: uppercase;
-            line-height: 1.3;
-        }
-        .funding-levels {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            text-align: center;
-            margin-bottom: 100px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .level-item .amount {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #f6b84c;
-            text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);
-        }
-        .level-item:nth-child(3) .amount {
-            opacity: 0.5;
-        }
-        .level-item p {
-            font-size: 1rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 10px;
-        }
-        .benefits-cards {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            align-items: flex-start;
-        }
-        .benefit-card {
-            width: 45%;
-            max-width: 480px;
-            position: relative;
-        }
-        .benefit-card-content {
-            background-color: #fdda5f;
-            color: #3d1f6b;
-            padding: 40px;
-            padding-top: 50px;
-            text-align: left;
-            border-radius: 12px;
-            min-height: 220px;
-        }
-        .benefit-card h3 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin: 0;
-            height: 45px;
-            width: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            background-color: #fdda5f;
-            color: #3d1f6b;
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-            clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
-            z-index: 3;
-            padding-bottom: 10px; /* To push text up a bit */
-        }
-        .benefit-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .benefit-card ul li {
-            margin-bottom: 15px;
-            line-height: 1.6;
-            font-size: 1rem;
-            font-weight: 500;
-            padding-left: 25px;
-            position: relative;
-        }
-        .benefit-card ul li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            top: 0px;
-            color: #3d1f6b;
-            font-weight: 900;
-            font-size: 1.2rem;
-        }
-
-        /* --- Commitment Section --- */
-        .commitment-section {
-            padding: 100px 0;
-            text-align: center;
-        }
-        .commitment-section .section-title h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #fff;
-            text-transform: uppercase;
-            line-height: 1.3;
-            margin-bottom: 60px;
-            position: relative;
-            display: inline-block;
-        }
-        .commitment-section .section-title h2::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -20px;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background-color: #f6b84c;
-            border-radius: 50%;
-            box-shadow: 0 0 15px 5px rgba(246, 184, 76, 0.7);
-        }
-        .commitment-cards {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-        .commitment-card {
-            background-color: rgba(103, 73, 143, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 30px;
-            width: 30%;
-            max-width: 350px;
-            color: #e0d8f5;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            text-align: left;
-        }
-        .partner-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 50px;
-        }
-        .partner-logos img {
-            max-height: 50px;
-            filter: grayscale(100%) brightness(1.5);
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-        .partner-logos img:hover {
-            filter: none;
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        /* --- Footer --- */
-        .site-footer {
-            background: linear-gradient(90deg, #fdda5f, #f6b84c);
-            color: #ffffff;
-            padding-top: 200px;
-            padding-bottom: 50px;
-            position: relative;
-            overflow: hidden;
-        }
-        .footer-bg-art {
-            position: absolute;
-            bottom: 100%; /* Position it right above the footer */
-            left: 0;
-            width: 100%;
-            height: 300px; /* Adjust height as needed */
-            margin-bottom: -150px; /* Pull it down to overlap */
-            z-index: 0;
-            pointer-events: none;
-        }
-        .footer-bg-art img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: bottom center;
-        }
-        .site-footer .container {
-            position: relative;
-            z-index: 1;
-        }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            gap: 40px;
-        }
-        .footer-contact {
-            width: 35%;
-        }
-        .footer-contact h4 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-top: 0;
-        }
-        .footer-contact ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .footer-contact li {
-            margin-bottom: 15px;
-            font-size: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-        }
-         .footer-contact li .icon {
-            margin-right: 15px;
-            font-size: 1.5rem;
-            color: #ffffff;
-        }
-        .footer-main {
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            text-align: right;
-        }
-        .footer-address {
-            margin-bottom: 30px;
-        }
-        .footer-address h5 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin: 0 0 5px 0;
-        }
-        .footer-address p {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        .location-icon {
-            font-size: 1.5rem;
-            vertical-align: middle;
-        }
-        .footer-qr-codes {
-            display: flex;
-            gap: 20px;
-        }
-        .qr-code-item img {
-            max-width: 250px;
-        }
-
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
+<body class="bg-purple-dark text-white font-gilroy font-normal overflow-x-hidden">
+    <div id="tsparticles" class="fixed inset-0 -z-10"></div>
+    <header class="absolute top-0 w-full border-b border-white/20 py-5 z-[1000]">
+        <div class="w-[90%] max-w-[1200px] mx-auto relative flex justify-between items-center">
             <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                <ul class="flex items-center gap-[50px]">
+                    <li><a href="#" class="font-semibold text-[1.1rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary">Home</a></li>
+                    <li><a href="#" class="font-semibold text-[1.1rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary">About</a></li>
+                    <li><a href="#" class="font-semibold text-[1.1rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary">Liên hệ</a></li>
                 </ul>
             </nav>
-            <a href="#" class="btn btn-secondary">ĐĂNG KÝ NGAY</a>
+            <a href="#" class="inline-block py-[14px] px-8 rounded-full font-bold uppercase transition-all duration-300 ease-in-out border-2 border-transparent text-base bg-yellow-primary text-brown-dark hover:scale-105">ĐĂNG KÝ NGAY</a>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="hero-art">
-                <!-- These coins will be positioned behind the main content -->
-                <img src="images/Asset 8 - left.png" alt="Floating Coins Left" class="hero-art-coins-left">
-                <img src="images/Asset 8-right.png" alt="Floating Coins Right" class="hero-art-coins-right">
+        <section class="min-h-screen py-[100px] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center text-center relative" style="background-image: url('images/Asset 4.png');">
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-10">
+                <img src="images/Asset 8 - left.png" alt="Floating Coins Left" class="absolute bottom-20 left-[10%] w-[300px]" loading="lazy">
+                <img src="images/Asset 8-right.png" alt="Floating Coins Right" class="absolute bottom-20 right-[10%] w-[300px]" loading="lazy">
             </div>
-            <div class="container">
-                <!-- Asset 5 and 6 are now in sequential order inside the main container -->
-                <img src="images/Asset 5.png" alt="Hero Art Top" class="hero-top-art-image">
-                <img src="images/Asset 6.png" alt="Fintech 2025 Title" class="hero-title-image">
-                <h2>CHƯƠNG TRÌNH TUYỂN CHỌN DỰ ÁN ĐỔI MỚI SÁNG TẠO, KHỞI NGHIỆP TRONG LĨNH VỰC CÔNG NGHỆ TÀI CHÍNH NĂM 2025</h2>
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">ĐĂNG KÝ DỰ THI</a>
-                    <a href="#" class="btn btn-outline">TÌM HIỂU THÊM</a>
+            <div class="w-[90%] max-w-[1200px] mx-auto relative z-20 flex flex-col items-center">
+                <img src="images/Asset 5.png" alt="Hero Art Top" class="block w-[700px] max-w-[90%] -mb-5" loading="lazy">
+                <img src="images/Asset 6.png" alt="Fintech 2025 Title" class="max-w-[650px] mb-5" loading="lazy">
+                <h2 class="text-[1.4rem] font-bold max-w-[750px] mt-[10px] mb-10 mx-auto leading-normal text-white uppercase">CHƯƠNG TRÌNH TUYỂN CHỌN DỰ ÁN ĐỔI MỚI SÁNG TẠO, KHỞI NGHIỆP TRONG LĨNH VỰC CÔNG NGHỆ TÀI CHÍNH NĂM 2025</h2>
+                <div class="flex justify-center gap-5 mt-[30px]">
+                    <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-gradient-to-r from-yellow-primary to-yellow-secondary text-brown-dark font-heavy border-transparent hover:scale-105 hover:shadow-[0_0_20px_#fdda5f]">ĐĂNG KÝ DỰ THI</a>
+                    <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-yellow-primary text-yellow-primary font-bold hover:bg-yellow-primary hover:text-brown-dark">TÌM HIỂU THÊM</a>
                 </div>
             </div>
         </section>
 
-        <div class="main-background-wrapper">
-            <div class="main-content-wrapper">
-                <section class="custom-layout-section">
-                    
-                    <div class="layout-block info-block">
-                        <h3>Thông tin</h3>
-                        <h4>Chương trình</h4>
-                        <p>Công nghệ tài chính (Fintech) được hiểu là việc áp dụng công nghệ vào hoạt động tài chính - ngân hàng để tạo ra các sản phẩm, dịch vụ mới với hiệu quả cao hơn, chi phí thấp hơn, tiện lợi hơn. Fintech đã và đang thay đổi sâu sắc ngành tài chính - ngân hàng truyền thống, mang lại nhiều lợi ích cho người dùng và nền kinh tế. Với sự phát triển của Internet và các công nghệ mới, Fintech ngày càng có nhiều tiềm năng phát triển, đặc biệt là tại các khu vực đang phát triển như Việt Nam. Theo báo cáo của Appota (12/5/2021) về thị trường ứng dụng di động tại Việt Nam năm 2020, Việt Nam nằm trong top 12 những quốc gia có giá thành Internet rẻ nhất thế giới, đứng thứ 2 Đông Nam Á về tốc độ Internet trên thiết bị di động.</p>
-                        <a href="#" class="btn btn-outline-white">XEM THÊM</a>
+        <div class="relative bg-no-repeat bg-cover bg-center">
+            <div class="min-h-screen flex items-center justify-center">
+                <section class="w-[90%] max-w-[1200px] mx-auto text-center relative">
+                    <div class="max-w-[50%] text-left">
+                        <h3 class="text-yellow-primary text-2xl font-bold uppercase m-0">Thông tin</h3>
+                        <h4 class="text-white text-[4.5rem] font-heavy uppercase leading-tight mt-[10px] mb-[30px]">Chương trình</h4>
+                        <p class="text-purple-light text-base leading-[1.8] mb-10">Công nghệ tài chính (Fintech) được hiểu là việc áp dụng công nghệ vào hoạt động tài chính - ngân hàng để tạo ra các sản phẩm, dịch vụ mới với hiệu quả cao hơn, chi phí thấp hơn, tiện lợi hơn. Fintech đã và đang thay đổi sâu sắc ngành tài chính - ngân hàng truyền thống, mang lại nhiều lợi ích cho người dùng và nền kinh tế. Với sự phát triển của Internet và các công nghệ mới, Fintech ngày càng có nhiều tiềm năng phát triển, đặc biệt là tại các khu vực đang phát triển như Việt Nam. Theo báo cáo của Appota (12/5/2021) về thị trường ứng dụng di động tại Việt Nam năm 2020, Việt Nam nằm trong top 12 những quốc gia có giá thành Internet rẻ nhất thế giới, đứng thứ 2 Đông Nam Á về tốc độ Internet trên thiết bị di động.</p>
+                        <a href="#" class="inline-block rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-white text-white py-[10px] px-[30px] font-bold hover:bg-white hover:text-purple-dark">XEM THÊM</a>
                     </div>
-
                 </section>
             </div>
 
-            <section class="participants-section">
-                 <div class="layout-block participants-block">
-                    <div class="participants-cards">
-                        <div class="card complex-card">
-                            <div class="card-tab">NHÓM 1</div>
+            <section class="min-h-screen flex items-center justify-center">
+                <div class="flex gap-10 items-center w-[90%] max-w-[1200px] mx-auto">
+                    <div class="flex-[2] flex flex-row gap-[30px]">
+                        <div class="bg-no-repeat relative p-[50px_40px] min-h-[200px] box-border" style="background-image: url('images/1.png'); background-size: 100% 100%;">
+                            <div class="absolute top-[3px] right-[35px] text-yellow-primary font-extrabold text-[23px]">NHÓM 1</div>
                             <div class="card-body">
-                                <p><strong>(Giai đoạn tiền ươm tạo):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có <strong>ý tưởng đổi mới sáng tạo</strong> trong lĩnh vực công nghệ tài chính có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
+                                <p class="text-white text-[18px] leading-[1.7] m-0"><strong class="text-yellow-primary font-bold">(Giai đoạn tiền ươm tạo):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có <strong class="text-yellow-primary font-bold">ý tưởng đổi mới sáng tạo</strong> trong lĩnh vực công nghệ tài chính có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
                             </div>
                         </div>
-                        <div class="card complex-card">
-                            <div class="card-tab">NHÓM 1</div>
+                        <div class="bg-no-repeat relative p-[50px_40px] min-h-[200px] box-border" style="background-image: url('images/1.png'); background-size: 100% 100%;">
+                            <div class="absolute top-[3px] right-[35px] text-yellow-primary font-extrabold text-[23px]">NHÓM 2</div>
                             <div class="card-body">
-                                    <p><strong>(Giai đoạn ươm tạo tốc độ):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có các gói giải pháp, hình đổi mới sáng tạo... trong lĩnh vực công nghệ tài chính đã thành phẩm, có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
+                                <p class="text-white text-[18px] leading-[1.7] m-0"><strong class="text-yellow-primary font-bold">(Giai đoạn ươm tạo tốc độ):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có các gói giải pháp, hình đổi mới sáng tạo... trong lĩnh vực công nghệ tài chính đã thành phẩm, có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="participants-title">
-                        <h4>ĐỐI TƯỢNG<br><span>THAM GIA</span></h4>
+                    <div class="flex-1 text-left">
+                        <h4 class="text-white font-medium uppercase leading-none text-2xl">ĐỐI TƯỢNG<br><span class="text-[4.5rem] font-heavy block">THAM GIA</span></h4>
                     </div>
                 </div>
             </section>
 
-            <section class="conditions-section">
-                <div class="conditions-block">
-                    <div class="conditions-title">
-                        <h4>Điều Kiện<br><span>THAM GIA</span></h4>
+            <section class="min-h-screen flex items-center justify-center">
+                <div class="flex gap-5 items-center w-[90%] max-w-[1200px] mx-auto">
+                    <div class="flex-1 text-left">
+                        <h4 class="text-white font-medium uppercase leading-none text-2xl">Điều Kiện<br><span class="text-[4.5rem] font-heavy block">THAM GIA</span></h4>
                     </div>
-                    <div class="conditions-cards">
-                        <div class="card-row">
-                            <div class="card simple-card">
-                                <div class="card-content">
-                                    <p>Có ý tưởng, sản phẩm/giải pháp/dịch vụ/mô hình đổi mới sáng tạo thuộc các ngành trong lĩnh vực phát triển vùng có tiềm năng.</p>
-                                </div>
+                    <div class="flex-[1.5] flex flex-col">
+                        <div class="flex gap-5">
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
+                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Có ý tưởng, sản phẩm/giải pháp/dịch vụ/mô hình đổi mới sáng tạo thuộc các ngành trong lĩnh vực phát triển vùng có tiềm năng.</p>
                             </div>
-                            <div class="card simple-card">
-                                <div class="card-content">
-                                    <p>Cam kết tham gia đầy đủ các hoạt động hỗ trợ của Chương trình.</p>
-                                </div>
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
+                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Cam kết tham gia đầy đủ các hoạt động hỗ trợ của Chương trình.</p>
                             </div>
                         </div>
-                        <div class="card-row">
-                            <div class="card simple-card">
-                                <div class="card-content">
-                                    <p>Tổ chức, cá nhân dự tuyển có thể có một hoặc nhiều dự án ứng dụng ở một hoặc nhiều lĩnh vực của chương trình.</p>
-                                </div>
+                        <div class="flex gap-5 relative left-[50px] mt-5">
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
+                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Tổ chức, cá nhân dự tuyển có thể có một hoặc nhiều dự án ứng dụng ở một hoặc nhiều lĩnh vực của chương trình.</p>
                             </div>
-                            <div class="card simple-card">
-                                <div class="card-content">
-                                    <p>Các giải pháp đăng ký tham gia không xâm phạm quyền sở hữu trí tuệ theo quy định và chịu trách nhiệm về tính xác thực của thông tin trong hồ sơ tham dự (nếu có).</p>
-                                </div>
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
+                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Các giải pháp đăng ký tham gia không xâm phạm quyền sở hữu trí tuệ theo quy định và chịu trách nhiệm về tính xác thực của thông tin trong hồ sơ tham dự (nếu có).</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="registration-section">
-                <div class="registration-content">
+            <section class="min-h-screen flex items-center justify-center relative">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(221,137,27,0.953)] to-transparent z-10"></div>
+                <div class="relative z-20 w-[90%] max-w-[1200px] mx-auto text-left">
                     <div class="registration-title">
-                        <h3>Hồ sơ đăng ký</h3>
-                        <h4>THAM GIA</h4>
-                        <p>Tiếp nhận hồ sơ gồm Tên dự án - Số điện thoại gửi về email: Fintech@sihub.gov.vn</p>
+                        <h3 class="text-2xl font-medium uppercase m-0 text-white">Hồ sơ đăng ký</h3>
+                        <h4 class="text-[4.5rem] font-heavy uppercase leading-tight mb-[15px] text-white">THAM GIA</h4>
+                        <p class="text-base text-purple-light mb-[50px]">Tiếp nhận hồ sơ gồm Tên dự án - Số điện thoại gửi về email: Fintech@sihub.gov.vn</p>
                     </div>
-                    <div class="steps-container">
-                        <div class="step-item">
+                    <div class="flex justify-between gap-10 mb-[60px]">
+                        <div class="flex items-center gap-5">
                             <div class="step-number" data-text="1">1</div>
                             <div class="step-text">
-                                <h5>PHIẾU ĐĂNG KÝ THAM DỰ CHƯƠNG TRÌNH</h5>
-                                <span>1 BẢN</span>
+                                <h5 class="text-[1.2rem] font-bold uppercase text-yellow-primary mb-[5px] m-0">PHIẾU ĐĂNG KÝ THAM DỰ CHƯƠNG TRÌNH</h5>
+                                <span class="text-base font-medium text-white">1 BẢN</span>
                             </div>
                         </div>
-                        <div class="step-item">
+                        <div class="flex items-center gap-5">
                             <div class="step-number" data-text="2">2</div>
                             <div class="step-text">
-                                <h5>THUYẾT MINH DỰ ÁN</h5>
-                                <span>Tham khảo mẫu của ban tổ chức (1 bản)</span>
+                                <h5 class="text-[1.2rem] font-bold uppercase text-yellow-primary mb-[5px] m-0">THUYẾT MINH DỰ ÁN</h5>
+                                <span class="text-base font-medium text-white">Tham khảo mẫu của ban tổ chức (1 bản)</span>
                             </div>
                         </div>
-                        <div class="step-item">
+                        <div class="flex items-center gap-5">
                             <div class="step-number" data-text="3">3</div>
                             <div class="step-text">
-                                <h5>TÀI LIỆU KHÁC GIỚI THIỆU VỀ DỰ ÁN (NẾU CÓ)</h5>
-                                <span>1 BẢN</span>
+                                <h5 class="text-[1.2rem] font-bold uppercase text-yellow-primary mb-[5px] m-0">TÀI LIỆU KHÁC GIỚI THIỆU VỀ DỰ ÁN (NẾU CÓ)</h5>
+                                <span class="text-base font-medium text-white">1 BẢN</span>
                             </div>
                         </div>
                     </div>
-                    <div class="registration-buttons">
-                        <a href="#" class="btn btn-primary">ĐĂNG KÝ DỰ THI</a>
-                        <a href="#" class="btn btn-outline">TẢI MẪU THUYẾT MINH</a>
+                    <div class="flex gap-5">
+                        <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-gradient-to-r from-yellow-primary to-yellow-secondary text-brown-dark font-heavy border-transparent hover:scale-105 hover:shadow-[0_0_20px_#fdda5f]">ĐĂNG KÝ DỰ THI</a>
+                        <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-yellow-primary text-yellow-primary font-bold hover:bg-yellow-primary hover:text-brown-dark">TẢI MẪU THUYẾT MINH</a>
                     </div>
                 </div>
             </section>
 
-            <section class="criteria-section">
-                <div class="criteria-content">
-                    <div class="criteria-title">
-                        <h3>TIÊU CHÍ</h3>
-                        <h4>TUYỂN CHỌN</h4>
-                        <p>*Tiêu chí chỉ ứng dụng công nghệ bao gồm: Giao diện ứng dụng; Nền tảng lập trình; Khả năng tương thích người dùng; Chiến lược phát triển công nghệ.</p>
+            <section class="min-h-screen flex items-center justify-center relative">
+                <div class="w-full max-w-[1200px] mx-auto flex flex-col items-end">
+                    <div class="text-right max-w-[450px]">
+                        <h3 class="text-2xl font-medium uppercase m-0 text-white">TIÊU CHÍ</h3>
+                        <h4 class="text-[4.5rem] font-heavy uppercase leading-tight mb-[15px] text-white">TUYỂN CHỌN</h4>
+                        <p class="text-[0.9rem] text-purple-light">*Tiêu chí chỉ ứng dụng công nghệ bao gồm: Giao diện ứng dụng; Nền tảng lập trình; Khả năng tương thích người dùng; Chiến lược phát triển công nghệ.</p>
                     </div>
-
-                    <div class="criteria-items-container">
-                        <div class="criterion-item item-1"><span>Tính sáng tạo</span></div>
-                        <div class="criterion-item item-2"><span>Năng lực<br>thực hiện</span></div>
-                        <div class="criterion-item item-3"><span>Khả năng<br>áp dụng vào trong<br>thực tế</span></div>
-                        <div class="criterion-item item-4"><span>Thị trường<br>tiềm năng</span></div>
-                        <div class="criterion-item item-5"><span>Hiệu quả<br>kinh tế<br>hoặc tác động<br>xã hội</span></div>
-                        <div class="criterion-item item-6"><span>Ứng dụng<br>công nghệ</span></div>
-                        <div class="criterion-item item-7"><span>Mô hình<br>kinh doanh</span></div>
+                    <div class="relative w-full h-[450px] mt-5">
+                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-0" style="background-image: url('images/Asset 7.png');"><span>Tính sáng tạo</span></div>
+                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-1/4" style="background-image: url('images/Asset 7.png');"><span>Năng lực<br>thực hiện</span></div>
+                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-1/2" style="background-image: url('images/Asset 7.png');"><span>Khả năng<br>áp dụng vào trong<br>thực tế</span></div>
+                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-3/4" style="background-image: url('images/Asset 7.png');"><span>Thị trường<br>tiềm năng</span></div>
+                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[12.5%]" style="background-image: url('images/Asset 7.png');"><span>Hiệu quả<br>kinh tế<br>hoặc tác động<br>xã hội</span></div>
+                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[37.5%]" style="background-image: url('images/Asset 7.png');"><span>Ứng dụng<br>công nghệ</span></div>
+                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[62.5%]" style="background-image: url('images/Asset 7.png');"><span>Mô hình<br>kinh doanh</span></div>
                     </div>
                 </div>
             </section>
 
-            <section class="timeline-section">
-                <div class="timeline-title">
-                    <h3>HOẠT ĐỘNG CỦA CHƯƠNG TRÌNH</h3>
-                    <h4>VÀ QUY TRÌNH XÉT CHỌN</h4>
+            <section class="py-20 flex flex-col items-center gap-10 text-center relative">
+                <div class="text-left w-[90%] max-w-[1200px]">
+                    <h3 class="text-2xl font-medium uppercase m-0 text-white">HOẠT ĐỘNG CỦA CHƯƠNG TRÌNH</h3>
+                    <h4 class="text-[4.5rem] font-heavy uppercase leading-tight m-0 text-white">VÀ QUY TRÌNH XÉT CHỌN</h4>
                 </div>
-                <div class="timeline-container">
-                    <div class="timeline-item item-a"><span>Tháng 4-8/2025</span><p>Liên hệ và kết nối với sở ngành đơn vị</p></div>
-                    <div class="timeline-item item-b"><span>Tháng 8/2025</span><p>Tổ chức buổi tiệc kết nối chuyên gia</p></div>
-                    <div class="timeline-item item-c"><span>Tháng 4-8/2025</span><p>Tiếp nhận hồ sơ</p></div>
-                    <div class="timeline-item item-d"><span>Tháng 9/2025</span><p>Vòng sơ tuyển và huấn luyện kỹ năng</p></div>
-                    <div class="timeline-item item-e"><span>Tháng 9-10/2025</span><p>Vòng tranh đấu và công bố kết quả tuyển chọn</p></div>
-                    <div class="timeline-item item-f"><span>Tháng 11/2025</span><p>Tham gia hoạt động Sở khoa học và Công nghệ tổ chức</p></div>
-                    <div class="timeline-item item-g"><span>2026</span><p>Ươm tạo 35 dự án FINTECH</p></div>
+                <div class="relative w-[90%] max-w-[1200px] h-[500px] bg-no-repeat" style="background-image: url('images/Asset 8.png'); background-size: 100% 100%;">
+                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[15%] left-[5%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 4-8/2025</span><p class="text-[0.9rem] m-0">Liên hệ và kết nối với sở ngành đơn vị</p></div>
+                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[15%] left-[40%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 8/2025</span><p class="text-[0.9rem] m-0">Tổ chức buổi tiệc kết nối chuyên gia</p></div>
+                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[10%] left-[72%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 4-8/2025</span><p class="text-[0.9rem] m-0">Tiếp nhận hồ sơ</p></div>
+                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[5%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 9/2025</span><p class="text-[0.9rem] m-0">Vòng sơ tuyển và huấn luyện kỹ năng</p></div>
+                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[33.6%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 9-10/2025</span><p class="text-[0.9rem] m-0">Vòng tranh đấu và công bố kết quả tuyển chọn</p></div>
+                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[72%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 11/2025</span><p class="text-[0.9rem] m-0">Tham gia hoạt động Sở khoa học và Công nghệ tổ chức</p></div>
+                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[78%] left-[5%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">2026</span><p class="text-[0.9rem] m-0">Ươm tạo 35 dự án FINTECH</p></div>
                 </div>
             </section>
 
-            <section class="benefits-section">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Quyền lợi và Mức kinh phí hỗ trợ</h2>
+            <section class="py-[100px] relative overflow-hidden">
+                <div class="absolute top-1/4 -left-1/4 w-[150%] h-[250px] bg-gradient-to-r from-transparent via-yellow-secondary/30 to-transparent z-10 blur-[40px] -rotate-6"></div>
+                <div class="w-[90%] max-w-[1200px] mx-auto relative z-20">
+                    <div class="text-center mb-[60px]">
+                        <h2 class="text-[2.8rem] font-extrabold text-white uppercase leading-tight">Quyền lợi và Mức kinh phí hỗ trợ</h2>
                     </div>
-                    <div class="funding-levels">
-                        <div class="level-item">
-                            <div class="amount">40 Triệu</div>
-                            <p>Dự án, không quá 6 tháng</p>
+                    <div class="flex justify-around items-start text-center mb-[100px] max-w-[1000px] mx-auto">
+                        <div>
+                            <div class="text-4xl font-extrabold text-yellow-secondary" style="text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);">40 Triệu</div>
+                            <p class="text-base font-medium text-white/80 mt-2.5">Dự án, không quá 6 tháng</p>
                         </div>
-                        <div class="level-item">
-                            <div class="amount">80 Triệu</div>
-                            <p>Dự án, không quá 12 tháng</p>
+                        <div>
+                            <div class="text-4xl font-extrabold text-yellow-secondary" style="text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);">80 Triệu</div>
+                            <p class="text-base font-medium text-white/80 mt-2.5">Dự án, không quá 12 tháng</p>
                         </div>
-                        <div class="level-item">
-                            <div class="amount">400 Triệu</div>
-                            <p>Dự án, không quá 12 tháng</p>
+                        <div>
+                            <div class="text-4xl font-extrabold text-yellow-secondary opacity-50" style="text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);">400 Triệu</div>
+                            <p class="text-base font-medium text-white/80 mt-2.5">Dự án, không quá 12 tháng</p>
                         </div>
                     </div>
-                    <div class="benefits-cards">
-                        <div class="benefit-card">
-                            <h3>QUYỀN LỢI</h3>
-                            <div class="benefit-card-content">
-                                <ul>
-                                    <li>Được huấn luyện, cố vấn, ươm tạo để hoàn thiện giải pháp</li>
-                                    <li>Được hỗ trợ không gian làm việc chung tại SIHUB.</li>
-                                    <li>Được công bố, quảng bá trên các phương tiện truyền thông của BTC.</li>
+                    <div class="flex justify-center gap-[60px] items-start">
+                        <div class="w-[45%] max-w-[480px] relative">
+                            <h3 class="absolute top-0 left-0 m-0 h-[45px] w-[200px] flex items-center justify-center text-[1.4rem] font-extrabold uppercase bg-yellow-primary text-purple-dark rounded-t-xl z-30 pb-2.5" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);">QUYỀN LỢI</h3>
+                            <div class="bg-yellow-primary text-purple-dark p-10 pt-[50px] text-left rounded-xl min-h-[220px]">
+                                <ul class="list-none p-0 m-0">
+                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được huấn luyện, cố vấn, ươm tạo để hoàn thiện giải pháp</li>
+                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được hỗ trợ không gian làm việc chung tại SIHUB.</li>
+                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được công bố, quảng bá trên các phương tiện truyền thông của BTC.</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="benefit-card">
-                            <h3>QUYỀN LỢI</h3>
-                            <div class="benefit-card-content">
-                                <ul>
-                                    <li>Được tham gia các chương trình hỗ trợ của Sở Khoa học và Công nghệ, các chương trình đào tạo, kết nối.</li>
-                                    <li>Được hỗ trợ một phần kinh phí và có cơ hội được kết nối đầu tư/ tư vấn đăng ký sở hữu trí tuệ</li>
+                        <div class="w-[45%] max-w-[480px] relative">
+                            <h3 class="absolute top-0 left-0 m-0 h-[45px] w-[200px] flex items-center justify-center text-[1.4rem] font-extrabold uppercase bg-yellow-primary text-purple-dark rounded-t-xl z-30 pb-2.5" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);">QUYỀN LỢI</h3>
+                            <div class="bg-yellow-primary text-purple-dark p-10 pt-[50px] text-left rounded-xl min-h-[220px]">
+                                <ul class="list-none p-0 m-0">
+                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được tham gia các chương trình hỗ trợ của Sở Khoa học và Công nghệ, các chương trình đào tạo, kết nối.</li>
+                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được hỗ trợ một phần kinh phí và có cơ hội được kết nối đầu tư/ tư vấn đăng ký sở hữu trí tuệ</li>
                                 </ul>
                             </div>
                         </div>
@@ -1168,60 +334,76 @@
                 </div>
             </section>
 
-            <section class="commitment-section">
-                <div class="container">
+            <section class="py-[100px] text-center">
+                <div class="w-[90%] max-w-[1200px] mx-auto">
                     <div class="section-title">
-                        <h2>Cam kết và Bảo mật</h2>
+                        <h2 class="text-[2.8rem] font-extrabold text-white uppercase leading-tight mb-[60px] relative inline-block">
+                            Cam kết và Bảo mật
+                            <span class="absolute left-1/2 -bottom-5 -translate-x-1/2 w-2.5 h-2.5 bg-yellow-secondary rounded-full" style="box-shadow: 0 0 15px 5px rgba(246, 184, 76, 0.7)"></span>
+                        </h2>
                     </div>
-                    <div class="commitment-cards">
-                        <div class="commitment-card">
+                    <div class="flex justify-center gap-[30px] mb-20">
+                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[15px] p-[30px] w-[30%] max-w-[350px] text-purple-light text-[0.95rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
                             <p>Ban Tổ chức Chương trình cam kết bảo mật thông tin đối với những hồ sơ, số liệu mà đối tượng dự tuyển yêu cầu bảo mật.</p>
                         </div>
-                        <div class="commitment-card">
+                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[15px] p-[30px] w-[30%] max-w-[350px] text-purple-light text-[0.95rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
                             <p>Các tổ chức, cá nhân tự chịu trách nhiệm về quyền sở hữu trí tuệ liên quan đến các hồ sơ tham dự chương trình.</p>
                         </div>
-                        <div class="commitment-card">
+                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[15px] p-[30px] w-[30%] max-w-[350px] text-purple-light text-[0.95rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
                             <p>Trong trường hợp phát hiện các vi phạm liên quan đến quyền sở hữu trí tuệ và các hình thức vi phạm khác, Ban Tổ chức chương trình được quyền loại hồ sơ dự tuyển, hủy kết quả công nhận.</p>
                         </div>
                     </div>
-                    <div class="partner-logos">
-                        <img src="images/Asset 13.png" alt="Shinhan Future's Lab">
-                        <img src="images/Asset 12.png" alt="BlockBase">
-                        <img src="images/Asset 14.png" alt="New World Fintech">
-                        <img src="images/Asset 13.png" alt="Shinhan Future's Lab">
-                        <img src="images/Asset 12.png" alt="BlockBase">
-                        <img src="images/Asset 14.png" alt="New World Fintech">
-                        <img src="images/Asset 13.png" alt="Shinhan Future's Lab">
+                    <div class="w-full overflow-hidden flex justify-center">
+                        <div class="flex w-max animate-marquee">
+                            <div class="flex shrink-0 items-center gap-[50px] px-[25px]">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                            </div>
+                            <div class="flex shrink-0 items-center gap-[50px] px-[25px]">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <h4>Thông tin liên hệ</h4>
-                    <ul>
-                        <li><span class="icon">&#x1F464;</span>Ms. Vũ Thị Thu Hà</li>
-                        <li><span class="icon">&#x1F3E2;</span>Phòng Đối mới Sáng tạo và Khởi nghiệp</li>
-                        <li><span class="icon">&#x2709;</span>Email: thuha@sihub.gov.vn</li>
-                        <li><span class="icon">&#x260E;</span>Phone: 0974544409</li>
+    <footer class="bg-gradient-to-r from-yellow-primary via-[#fef9c3] to-purple-dark text-white pt-[50px] pb-[50px] relative overflow-hidden">
+        <div class="w-[90%] max-w-[1200px] mx-auto relative z-10">
+            <div class="flex justify-between gap-10">
+                <div class="w-[35%]">
+                    <h4 class="text-[1.4rem] font-extrabold uppercase mt-0">Thông tin liên hệ</h4>
+                    <ul class="list-none p-0 m-0">
+                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">👤</span>Ms. Vũ Thị Thu Hà</li>
+                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">🏢</span>Phòng Đối mới Sáng tạo và Khởi nghiệp</li>
+                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">✉</span>Email: thuha@sihub.gov.vn</li>
+                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">☎</span>Phone: 0974544409</li>
                     </ul>
                 </div>
-                <div class="footer-main">
-                    <div class="footer-address">
-                        <h5>Sở Khoa học và Công nghệ <span class="location-icon">&#x1F4CD;</span></h5>
-                        <p>Trung tâm Khởi nghiệp sáng tạo Tp. Hồ Chí Minh</p>
-                        <p>273 Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh</p>
+                <div class="w-[60%] flex flex-col items-end text-right">
+                    <div class="mb-[30px]">
+                        <h5 class="text-[1.2rem] font-extrabold m-0 mb-[5px]">Sở Khoa học và Công nghệ <span class="text-[1.5rem] align-middle">📍</span></h5>
+                        <p class="m-0 text-base font-semibold">Trung tâm Khởi nghiệp sáng tạo Tp. Hồ Chí Minh</p>
+                        <p class="m-0 text-base font-semibold">273 Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh</p>
                     </div>
-                    <div class="footer-qr-codes">
-                        <div class="qr-code-item">
-                            <img src="images/Asset 10.png" alt="Quét mã đăng ký">
+                    <div class="flex gap-5">
+                        <div>
+                            <img src="images/Asset 10.png" alt="Quét mã đăng ký" class="max-w-[250px]" loading="lazy">
                         </div>
-                        <div class="qr-code-item">
-                            <img src="images/Asset 9.png" alt="Tải form đăng ký">
+                        <div>
+                            <img src="images/Asset 9.png" alt="Tải form đăng ký" class="max-w-[250px]" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -1229,5 +411,77 @@
         </div>
     </footer>
 
+    <script>
+        tsParticles.load("tsparticles", {
+            background: {
+                color: {
+                    value: "#3d1f6b"
+                }
+            },
+            fpsLimit: 120,
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        area: 800
+                    }
+                },
+                color: {
+                    value: "#00ffff"
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true
+                },
+                size: {
+                    value: 2,
+                    random: {
+                        enable: true,
+                        minimumValue: 1
+                    }
+                },
+                links: {
+                    color: "#00ffff",
+                    distance: 150,
+                    enable: true,
+                    opacity: 0.3,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    outModes: "out"
+                }
+            },
+            interactivity: {
+                events: {
+                    onHover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onClick: {
+                        enable: false
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 200,
+                        links: {
+                            opacity: 0.8
+                        }
+                    }
+                }
+            },
+            detectRetina: true
+        });
+    </script>
 </body>
-</html> 
+</html>
