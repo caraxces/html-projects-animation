@@ -88,24 +88,21 @@
             font-style: normal;
         }
 
-        /* General Styles */
-        /* These styles are now handled by Tailwind CSS utility classes */
-
         /* Custom animation for registration section */
         .step-number {
-            font-size: 10rem;
+            font-size: 15rem; /* 10rem * 1.5 */
             font-weight: 200;
             line-height: 1;
             position: relative;
             color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.5); /* 1px * 1.5 */
         }
         .step-number::before {
             content: attr(data-text);
             position: absolute;
             left: 0;
             top: 0;
-            -webkit-text-stroke: 1px rgba(255, 215, 0, 0);
+            -webkit-text-stroke: 1.5px rgba(255, 215, 0, 0); /* 1px * 1.5 */
             background-image: linear-gradient(120deg, rgba(253,218,95,0) 30%, rgba(253,218,95,0.8) 50%, rgba(253,218,95,0) 70%);
             background-size: 200% 100%;
             -webkit-background-clip: text;
@@ -117,100 +114,853 @@
             100% { background-position: -200% 0; }
         }
 
+        .collapsed-text {
+            overflow: hidden;
+            max-height: 135px; /* Based on 3 lines */
+            transition: max-height 0.5s ease-in-out;
+            position: relative;
+        }
+        .collapsed-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to top, rgba(61, 31, 107, 1), transparent);
+        }
+        .collapsed-text.expanded {
+            max-height: 1000px; /* Large enough for full content */
+        }
+        .collapsed-text.expanded::after {
+            display: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Desktop Navigation - Ẩn hamburger menu */
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Reset toàn bộ width cho mobile */
+            * {
+                box-sizing: border-box;
+            }
+            
+            /* Header Mobile với Hamburger Menu */
+            header {
+                padding: 1rem 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                background: rgba(61, 31, 107, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1001;
+            }
+            
+            header .w-\[90\%\] {
+                width: 95%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* Hamburger Button */
+            .mobile-menu-btn {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                padding: 0.5rem;
+                z-index: 1002;
+            }
+            
+            .mobile-menu-btn span {
+                width: 25px;
+                height: 3px;
+                background: white;
+                margin: 3px 0;
+                transition: 0.3s;
+                border-radius: 2px;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            /* Mobile Navigation */
+            header nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(61, 31, 107, 0.98);
+                backdrop-filter: blur(20px);
+                transition: left 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+            }
+            
+            header nav.active {
+                left: 0;
+            }
+            
+            header nav ul {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+                width: 100%;
+            }
+            
+            header nav ul li a {
+                font-size: 1.5rem;
+                color: white;
+                text-decoration: none;
+                padding: 1rem;
+                display: block;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                width: 100%;
+            }
+            
+            header nav ul li a:hover {
+                background: rgba(253, 218, 95, 0.2);
+                transform: scale(1.05);
+            }
+            
+            header a[href="#"]:last-child {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+                order: 2;
+            }
+
+            /* Hero Section Mobile - Full Width Fix */
+            #home {
+                padding: 6rem 0 3rem 0;
+                margin-top: 0;
+                width: 100%;
+                min-height: 100vh;
+            }
+            
+            #home .w-\[90\%\] {
+                width: 95%;
+            }
+            
+            #home .flex.items-center.justify-center.gap-x-12 {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            
+            #home img[alt="Sở Khoa học và Công nghệ TP.HCM"] {
+                height: 120px;
+                width: auto;
+                max-width: 90%;
+            }
+            
+            #home img[alt="Hero Art Top"] {
+                height: 100px;
+                width: auto;
+                max-width: 90%;
+            }
+            
+            #home .w-full.flex.justify-center {
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            #home .w-full.flex.justify-center img {
+                max-width: 100%;
+                width: 100%;
+                height: auto;
+            }
+            
+            #home h2 {
+                font-size: 1.1rem;
+                width: 95%;
+                margin: 1.5rem auto;
+                line-height: 1.5;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            #home .flex.justify-center.gap-8 {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                width: 100%;
+                padding: 0 2rem;
+            }
+            
+            #home .flex.justify-center.gap-8 a {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+                border-radius: 50px;
+            }
+
+            /* About Section Mobile - Full Width */
+            #about {
+                width: 100%;
+            }
+            
+            #about .w-\[90\%\] {
+                width: 95%;
+            }
+            
+            #about .max-w-\[50\%\] {
+                max-width: 100%;
+                width: 95%;
+                margin: 0 auto;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            #about h3 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            #about h4 {
+                font-size: 2.5rem;
+                margin: 1rem 0 1.5rem 0;
+                line-height: 1.1;
+            }
+            
+            #about p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                text-align: left;
+                line-height: 1.6;
+                width: 100%;
+            }
+            
+            #about a {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                display: inline-block;
+                margin: 0 auto;
+            }
+
+            /* Đối tượng tham gia Mobile - Full Width với Background Fix */
+            .flex.gap-15.items-center,
+            .flex.gap-8.items-center {
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+                padding: 0;
+            }
+            
+            .flex.gap-15.items-center .w-\[90\%\],
+            .flex.gap-8.items-center .w-\[90\%\] {
+                width: 95%;
+            }
+            
+            .flex-\[2\].flex.flex-row.gap-\[45px\] {
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+                order: 2;
+                padding: 0 1rem;
+            }
+            
+            .bg-no-repeat.relative.p-\[75px_60px\] {
+                padding: 2rem 1.5rem;
+                min-height: 200px;
+                margin: 0 auto;
+                width: 100%;
+                max-width: none;
+                background-size: 100% 100% !important;
+                background-position: center !important;
+                border-radius: 15px;
+                overflow: hidden;
+            }
+            
+            .bg-no-repeat.relative.p-\[75px_60px\] p {
+                font-size: 1rem;
+                line-height: 1.5;
+                width: 100%;
+            }
+            
+            .bg-no-repeat.relative.p-\[75px_60px\] .absolute {
+                font-size: 1.3rem;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .flex-1.text-right {
+                order: 1;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .flex-1.text-right h4 {
+                font-size: 1.8rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+            
+            .flex-1.text-right h4 span {
+                font-size: 2.5rem;
+                display: block;
+                margin-top: 0.5rem;
+            }
+
+            /* Điều kiện tham gia Mobile - Full Width Grid */
+            .flex-\[1\.5\].flex.flex-col {
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .flex-\[1\.5\].flex.flex-col .flex.gap-8,
+            .flex-\[1\.5\].flex.flex-col .flex.gap-5 {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                width: 100%;
+            }
+            
+            .flex-\[1\.5\].flex.flex-col .relative {
+                position: static !important;
+                left: auto !important;
+                margin-top: 1rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                width: 100%;
+            }
+            
+            .bg-no-repeat.aspect-square {
+                aspect-ratio: auto;
+                min-height: 180px;
+                padding: 1.5rem;
+                margin: 0;
+                width: 100%;
+                max-width: none;
+                background-size: 100% 100% !important;
+                background-position: center !important;
+                border-radius: 15px;
+            }
+            
+            .bg-no-repeat.aspect-square p {
+                font-size: 1rem;
+                line-height: 1.5;
+                width: 100%;
+            }
+
+            /* Registration Section Mobile - Full Width */
+            .flex.justify-between.gap-15,
+            .flex.justify-between.gap-10 {
+                flex-direction: column;
+                gap: 2.5rem;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .flex.items-center.gap-8,
+            .flex.items-center.gap-5 {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .step-number {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .step-text {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .step-text h5 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .step-text span {
+                font-size: 1rem;
+            }
+            
+            .flex.gap-8:last-child {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 2rem;
+                width: 100%;
+            }
+            
+            .flex.gap-8:last-child a {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                text-align: center;
+                padding: 1rem 2rem;
+            }
+
+            /* Tiêu chí tuyển chọn Mobile - Complete Redesign */
+            .w-\[90\%\].flex.flex-col.items-end {
+                width: 95%;
+                align-items: center;
+            }
+            
+            .text-right.max-w-\[675px\] {
+                text-align: center;
+                max-width: 100%;
+                width: 95%;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+            
+            .text-right.max-w-\[675px\] h3 {
+                font-size: 1.8rem;
+            }
+            
+            .text-right.max-w-\[675px\] h4 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .text-right.max-w-\[675px\] p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            .relative.w-full.h-\[675px\] {
+                position: static !important;
+                height: auto !important;
+                width: 100% !important;
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem !important;
+                margin-top: 2rem !important;
+                padding: 0 1rem !important;
+            }
+            
+            .absolute.w-\[300px\].h-\[300px\] {
+                position: relative !important;
+                width: 100% !important;
+                height: 150px !important;
+                font-size: 0.9rem !important;
+                line-height: 1.3 !important;
+                background-size: contain !important;
+                background-repeat: no-repeat !important;
+                background-position: center !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+                padding: 1rem !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+            }
+
+            /* Timeline Section Mobile - Background Fix */
+            .py-30 {
+                padding: 3rem 0;
+                width: 100%;
+            }
+            
+            .py-30 .w-\[90\%\] {
+                width: 95%;
+            }
+            
+            .py-30 h3 {
+                font-size: 1.8rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            .py-30 h4 {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            .relative.w-\[90\%\].max-w-\[1800px\].h-\[750px\] {
+                position: static !important;
+                height: auto !important;
+                width: 95% !important;
+                padding: 2rem 1rem !important;
+                background: none !important;
+                margin: 0 auto;
+            }
+            
+            .absolute.text-white {
+                position: relative !important;
+                margin-bottom: 2rem !important;
+                text-align: center !important;
+                background: rgba(61, 31, 107, 0.9) !important;
+                padding: 1.5rem !important;
+                border-radius: 15px !important;
+                backdrop-filter: blur(10px) !important;
+                width: 100% !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                border: 1px solid rgba(253, 218, 95, 0.3);
+            }
+            
+            .absolute.text-white span {
+                font-size: 1.2rem !important;
+                display: block !important;
+                margin-bottom: 0.5rem !important;
+                color: #fdda5f !important;
+                font-weight: bold !important;
+            }
+            
+            .absolute.text-white p {
+                font-size: 1rem !important;
+                line-height: 1.4 !important;
+                margin: 0 !important;
+                color: white !important;
+            }
+
+            /* Benefits Section Mobile - Full Width */
+            .py-\[150px\] {
+                padding: 3rem 0;
+                width: 100%;
+            }
+            
+            .py-\[150px\] .w-\[90\%\] {
+                width: 95%;
+            }
+            
+            .py-\[150px\] h2 {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            .flex.justify-around.items-start {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .flex.justify-around.items-start > div {
+                width: 100%;
+            }
+            
+            .text-6xl {
+                font-size: 2.5rem;
+            }
+            
+            .flex.justify-center.gap-\[90px\] {
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .w-\[45\%\].max-w-\[720px\] {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .w-\[45\%\].max-w-\[720px\] h3 {
+                width: 100%;
+                font-size: 1.3rem;
+                height: auto;
+                padding: 1rem;
+                text-align: center;
+                clip-path: none;
+                border-radius: 15px 15px 0 0;
+            }
+            
+            .bg-yellow-primary.text-purple-dark.p-15 {
+                padding: 1.5rem;
+                padding-top: 2rem;
+                border-radius: 0 0 15px 15px;
+                width: 100%;
+            }
+            
+            .bg-yellow-primary.text-purple-dark.p-15 li {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+                width: 100%;
+            }
+
+            /* Commitment Section Mobile - Full Width */
+            .py-\[150px\]:last-of-type {
+                padding: 3rem 0;
+                width: 100%;
+            }
+            
+            .py-\[150px\]:last-of-type .w-\[90\%\] {
+                width: 95%;
+            }
+            
+            .py-\[150px\]:last-of-type h2 {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .flex.justify-center.gap-\[45px\] {
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .w-\[30\%\].max-w-\[525px\] {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .rounded-\[23px\].p-\[45px\] {
+                border-radius: 15px;
+                padding: 1.5rem;
+                width: 100%;
+            }
+            
+            .text-\[1\.43rem\] {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            /* Footer Mobile - Full Width */
+            footer {
+                padding: 3rem 0;
+                width: 100%;
+            }
+            
+            footer .w-\[90\%\] {
+                width: 95%;
+            }
+            
+            footer .flex.justify-between {
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            footer .w-\[35\%\],
+            footer .w-\[60\%\] {
+                width: 100%;
+            }
+            
+            footer .w-\[60\%\] {
+                text-align: center;
+            }
+            
+            footer h4 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            footer h5 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            footer li {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                line-height: 1.4;
+            }
+            
+            footer .flex.gap-8 {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                width: 100%;
+            }
+            
+            footer img {
+                max-width: 200px;
+                height: auto;
+                width: auto;
+            }
+
+            /* Logo marquee Mobile - Full Width */
+            .w-full.overflow-hidden {
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .max-h-\[75px\] {
+                max-height: 50px;
+            }
+            
+            .gap-\[75px\] {
+                gap: 2rem;
+            }
+            
+            .px-\[38px\] {
+                padding: 0 1rem;
+            }
+
+            /* Floating coins ẩn trên mobile */
+            #home .absolute.bottom-20 {
+                display: none;
+            }
+            
+            /* Particle background điều chỉnh */
+            #tsparticles {
+                opacity: 0.3;
+            }
+            
+            /* Container chính cho mobile */
+            .w-\[90\%\],
+            .max-w-\[1800px\] {
+                width: 95% !important;
+                max-width: none !important;
+            }
+            
+            /* Section spacing consistency */
+            section {
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            
+            .min-h-screen {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+        }
+
         body {
             background-color: #3d1f6b;
-            background-image: url("data:image/svg+xml;utf8,<svg width='400' height='600' viewBox='0 0 400 600' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' fill='#3d1f6b'/><path d='M 0,0.0 Q 100.0,150.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,0.0 Q 300.0,150.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,6.0 Q 104.99167083234141,153.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,6.0 Q 295.0083291676586,153.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,12.0 Q 109.93346653975306,156.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,12.0 Q 290.06653346024694,156.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,18.0 Q 114.77601033306698,159.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,18.0 Q 285.223989666933,159.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,24.0 Q 119.47091711543253,162.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,24.0 Q 280.52908288456746,162.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,30.0 Q 123.97127693021015,165.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,30.0 Q 276.02872306978986,165.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,36.0 Q 128.23212366975176,168.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,36.0 Q 271.7678763302482,168.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,42.0 Q 132.21088436188455,171.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,42.0 Q 267.78911563811545,171.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,48.0 Q 135.86780454497614,174.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,48.0 Q 264.13219545502386,174.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,54.0 Q 139.16634548137418,177.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,54.0 Q 260.83365451862585,177.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,60.0 Q 142.0735492403948,180.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,60.0 Q 257.9264507596052,180.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,66.0 Q 144.56036800307177,183.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,66.0 Q 255.43963199692823,183.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,72.0 Q 146.6019542983613,186.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,72.0 Q 253.3980457016387,186.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,78.0 Q 148.17790927085966,189.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,78.0 Q 251.82209072914034,189.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,84.0 Q 149.272486499423,192.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,84.0 Q 250.727513500577,192.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,90.0 Q 149.87474933020272,195.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,90.0 Q 250.12525066979728,195.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,96.0 Q 149.97868015207524,198.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,96.0 Q 250.02131984792476,198.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,102.0 Q 149.58324052262344,201.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,102.0 Q 250.41675947737656,201.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,108.0 Q 148.69238154390976,204.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,108.0 Q 251.30761845609024,204.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,114.0 Q 147.31500438437072,207.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,114.0 Q 252.68499561562928,207.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,120.0 Q 145.4648713412841,210.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,120.0 Q 254.5351286587159,210.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,126.0 Q 143.16046833244368,213.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,126.0 Q 256.83953166755634,213.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,132.0 Q 140.42482019097952,216.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,132.0 Q 259.5751798090205,216.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,138.0 Q 137.285260608836,219.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,138.0 Q 262.714739391164,219.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,144.0 Q 133.77315902755754,222.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,144.0 Q 266.22684097244246,222.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,150.0 Q 129.92360720519784,225.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,150.0 Q 270.07639279480213,225.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,156.0 Q 125.77506859107321,228.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,156.0 Q 274.2249314089268,228.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,162.0 Q 121.36899401169148,231.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,162.0 Q 278.6310059883085,231.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,168.0 Q 116.74940750779525,234.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,168.0 Q 283.25059249220476,234.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,174.0 Q 111.96246646069912,237.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,174.0 Q 288.03753353930085,237.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,180.0 Q 107.05600040299336,240.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,180.0 Q 292.9439995970066,240.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,186.0 Q 102.07903312166452,243.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,186.0 Q 297.9209668783355,243.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,192.0 Q 97.081292828621,246.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,192.0 Q 302.91870717137897,246.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,198.0 Q 92.11271529283759,249.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,198.0 Q 307.8872847071624,249.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,204.0 Q 87.22294489865844,252.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,204.0 Q 312.77705510134155,252.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,210.0 Q 82.46083861551901,255.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,210.0 Q 317.53916138448096,255.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,216.0 Q 77.87397783525738,258.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,216.0 Q 322.1260221647426,258.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,222.0 Q 73.50819295457532,261.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,222.0 Q 326.4918070454247,261.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,228.0 Q 69.40710545286406,264.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,228.0 Q 330.5928945471359,264.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,234.0 Q 65.6116920408013,267.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,234.0 Q 334.3883079591987,267.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,240.0 Q 62.15987523460359,270.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,240.0 Q 337.8401247653964,270.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,246.0 Q 59.086144446779485,273.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,246.0 Q 340.9138555532205,273.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,252.0 Q 56.42121137932059,276.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,252.0 Q 343.5787886206794,276.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,258.0 Q 54.191703162527254,279.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,258.0 Q 345.80829683747277,279.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,264.0 Q 52.4198963055242,282.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,264.0 Q 347.5801036944758,282.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,270.0 Q 51.12349411674515,285.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,270.0 Q 348.8765058832548,285.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,276.0 Q 50.315449818326776,288.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,276.0 Q 349.6845501816732,288.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,282.0 Q 50.00383712179496,291.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,282.0 Q 349.99616287820504,291.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,288.0 Q 50.191769558207966,294.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,288.0 Q 349.80823044179203,294.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,294.0 Q 50.87736936878338,297.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,294.0 Q 349.1226306312166,297.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,300.0 Q 52.053786266843076,300.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,300.0 Q 347.9462137331569,300.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,306.0 Q 53.70926588361338,303.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,306.0 Q 346.2907341163866,303.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,312.0 Q 55.82726721399234,306.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,312.0 Q 344.17273278600766,306.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,318.0 Q 58.38662788880494,309.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,318.0 Q 341.6133721111951,309.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,324.0 Q 61.36177562220064,312.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,324.0 Q 338.63822437779936,312.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,330.0 Q 64.7229837214804,315.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,330.0 Q 335.27701627851957,315.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,336.0 Q 68.43666810638392,318.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,336.0 Q 331.56333189361607,318.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,342.0 Q 72.46572287011813,321.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,342.0 Q 327.53427712988184,321.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,348.0 Q 76.76989102931213,324.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,348.0 Q 323.23010897068787,324.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,354.0 Q 81.3061667584882,327.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,354.0 Q 318.6938332415118,327.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,360.0 Q 86.0292250900537,330.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,360.0 Q 313.9707749099463,330.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,366.0 Q 90.8918747863952,333.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,366.0 Q 309.1081252136048,333.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,372.0 Q 95.84552985912518,336.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,372.0 Q 304.1544701408748,336.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,378.0 Q 100.84069502421748,339.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,378.0 Q 299.1593049757825,339.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,384.0 Q 105.82746024252468,342.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,384.0 Q 294.1725397574753,342.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,390.0 Q 110.75599940439078,345.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,390.0 Q 289.24400059560924,345.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,396.0 Q 115.5770681756689,348.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,396.0 Q 284.4229318243311,348.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,402.0 Q 120.24249603082991,351.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,402.0 Q 279.7575039691701,351.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,408.0 Q 124.70566755693041,354.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,408.0 Q 275.2943324430696,354.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,414.0 Q 128.92198821941,357.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,414.0 Q 271.07801178059003,357.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,420.0 Q 132.84932993593947,360.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,420.0 Q 267.15067006406053,360.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,426.0 Q 136.4484520062938,363.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,426.0 Q 263.5515479937062,363.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,432.0 Q 139.68339319245766,366.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,432.0 Q 260.31660680754237,366.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,438.0 Q 142.52183103142823,369.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,438.0 Q 257.47816896857177,369.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,444.0 Q 145.93540479058134,372.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,444.0 Q 255.06459520941866,372.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,450.0 Q 146.89999883873696,375.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,450.0 Q 253.10000116126304,375.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,456.0 Q 148.3959836015743,378.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,456.0 Q 251.6040163984257,378.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,462.0 Q 149.40841169385,381.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,462.0 Q 250.59158830615,381.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,468.0 Q 149.92716726873024,384.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,468.0 Q 250.07283273126976,384.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,474.0 Q 149.9470670919886,387.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,474.0 Q 250.0529329080114,387.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,480.0 Q 149.4679123311691,390.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,480.0 Q 250.5320876688309,390.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,486.0 Q 148.4944905422543,393.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,486.0 Q 251.5055094577457,393.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,492.0 Q 147.03652783398866,396.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,492.0 Q 252.96347216601134,396.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,498.0 Q 145.10859168781468,399.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,498.0 Q 254.89140831218532,399.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,504.0 Q 142.72994540441402,402.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,504.0 Q 257.270054595586,402.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,510.0 Q 139.9243556311745,405.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,510.0 Q 260.07564436882546,405.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,516.0 Q 136.71985489370567,408.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,516.0 Q 263.2801451062943,408.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,522.0 Q 133.14846150410915,411.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,522.0 Q 266.85153849589085,411.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,528.0 Q 129.24585964458808,414.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,528.0 Q 270.7541403554119,414.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,534.0 Q 125.05104282289423,417.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,534.0 Q 274.94895717710574,417.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,540.0 Q 120.60592426208783,420.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,540.0 Q 279.3940757379122,420.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,546.0 Q 115.9549181174676,423.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,546.0 Q 284.0450818825324,423.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,552.0 Q 111.14449570501239,426.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,552.0 Q 288.8555042949876,426.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,558.0 Q 106.22272117535309,429.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,558.0 Q 293.77727882464694,429.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,564.0 Q 101.23877127266789,432.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,564.0 Q 298.7612287273321,432.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,570.0 Q 96.24244397690954,435.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,570.0 Q 303.75755602309044,435.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,576.0 Q 91.28366093885101,438.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,576.0 Q 308.716339061149,438.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,582.0 Q 86.41196867945288,441.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,582.0 Q 313.5880313205471,441.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,588.0 Q 81.67604353740359,444.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,588.0 Q 318.3239564625964,444.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,594.0 Q 77.12320531123393,447.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,594.0 Q 322.87679468876604,447.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/></svg>");
+            background-image: url("data:image/svg+xml;utf8,<svg width='400' height='600' viewBox='0 0 400 600' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' fill='%233d1f6b'/><path d='M 0,0.0 Q 100.0,150.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,0.0 Q 300.0,150.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,6.0 Q 104.99167083234141,153.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,6.0 Q 295.0083291676586,153.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,12.0 Q 109.93346653975306,156.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,12.0 Q 290.06653346024694,156.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,18.0 Q 114.77601033306698,159.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,18.0 Q 285.223989666933,159.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,24.0 Q 119.47091711543253,162.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,24.0 Q 280.52908288456746,162.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,30.0 Q 123.97127693021015,165.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,30.0 Q 276.02872306978986,165.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,36.0 Q 128.23212366975176,168.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,36.0 Q 271.7678763302482,168.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,42.0 Q 132.21088436188455,171.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,42.0 Q 267.78911563811545,171.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,48.0 Q 135.86780454497614,174.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,48.0 Q 264.13219545502386,174.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,54.0 Q 139.16634548137418,177.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,54.0 Q 260.83365451862585,177.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,60.0 Q 142.0735492403948,180.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,60.0 Q 257.9264507596052,180.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,66.0 Q 144.56036800307177,183.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,66.0 Q 255.43963199692823,183.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,72.0 Q 146.6019542983613,186.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,72.0 Q 253.3980457016387,186.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,78.0 Q 148.17790927085966,189.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,78.0 Q 251.82209072914034,189.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,84.0 Q 149.272486499423,192.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,84.0 Q 250.727513500577,192.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,90.0 Q 149.87474933020272,195.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,90.0 Q 250.12525066979728,195.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,96.0 Q 149.97868015207524,198.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,96.0 Q 250.02131984792476,198.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,102.0 Q 149.58324052262344,201.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,102.0 Q 250.41675947737656,201.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,108.0 Q 148.69238154390976,204.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,108.0 Q 251.30761845609024,204.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,114.0 Q 147.31500438437072,207.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,114.0 Q 252.68499561562928,207.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,120.0 Q 145.4648713412841,210.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,120.0 Q 254.5351286587159,210.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,126.0 Q 143.16046833244368,213.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,126.0 Q 256.83953166755634,213.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,132.0 Q 140.42482019097952,216.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,132.0 Q 259.5751798090205,216.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,138.0 Q 137.285260608836,219.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,138.0 Q 262.714739391164,219.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,144.0 Q 133.77315902755754,222.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,144.0 Q 266.22684097244246,222.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,150.0 Q 129.92360720519784,225.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,150.0 Q 270.07639279480213,225.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,156.0 Q 125.77506859107321,228.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,156.0 Q 274.2249314089268,228.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,162.0 Q 121.36899401169148,231.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,162.0 Q 278.6310059883085,231.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,168.0 Q 116.74940750779525,234.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,168.0 Q 283.25059249220476,234.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,174.0 Q 111.96246646069912,237.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,174.0 Q 288.03753353930085,237.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,180.0 Q 107.05600040299336,240.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,180.0 Q 292.9439995970066,240.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,186.0 Q 102.07903312166452,243.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,186.0 Q 297.9209668783355,243.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,192.0 Q 97.081292828621,246.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,192.0 Q 302.91870717137897,246.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,198.0 Q 92.11271529283759,249.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,198.0 Q 307.8872847071624,249.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,204.0 Q 87.22294489865844,252.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,204.0 Q 312.77705510134155,252.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,210.0 Q 82.46083861551901,255.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,210.0 Q 317.53916138448096,255.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,216.0 Q 77.87397783525738,258.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,216.0 Q 322.1260221647426,258.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,222.0 Q 73.50819295457532,261.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,222.0 Q 326.4918070454247,261.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,228.0 Q 69.40710545286406,264.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,228.0 Q 330.5928945471359,264.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,234.0 Q 65.6116920408013,267.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,234.0 Q 334.3883079591987,267.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,240.0 Q 62.15987523460359,270.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,240.0 Q 337.8401247653964,270.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,246.0 Q 59.086144446779485,273.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,246.0 Q 340.9138555532205,273.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,252.0 Q 56.42121137932059,276.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,252.0 Q 343.5787886206794,276.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,258.0 Q 54.191703162527254,279.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,258.0 Q 345.80829683747277,279.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,264.0 Q 52.4198963055242,282.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,264.0 Q 347.5801036944758,282.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,270.0 Q 51.12349411674515,285.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,270.0 Q 348.8765058832548,285.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,276.0 Q 50.315449818326776,288.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,276.0 Q 349.6845501816732,288.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,282.0 Q 50.00383712179496,291.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,282.0 Q 349.99616287820504,291.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,288.0 Q 50.191769558207966,294.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,288.0 Q 349.80823044179203,294.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,294.0 Q 50.87736936878338,297.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,294.0 Q 349.1226306312166,297.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,300.0 Q 52.053786266843076,300.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,300.0 Q 347.9462137331569,300.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,306.0 Q 53.70926588361338,303.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,306.0 Q 346.2907341163866,303.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,312.0 Q 55.82726721399234,306.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,312.0 Q 344.17273278600766,306.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,318.0 Q 58.38662788880494,309.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,318.0 Q 341.6133721111951,309.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,324.0 Q 61.36177562220064,312.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,324.0 Q 338.63822437779936,312.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,330.0 Q 64.7229837214804,315.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,330.0 Q 335.27701627851957,315.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,336.0 Q 68.43666810638392,318.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,336.0 Q 331.56333189361607,318.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,342.0 Q 72.46572287011813,321.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,342.0 Q 327.53427712988184,321.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,348.0 Q 76.76989102931213,324.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,348.0 Q 323.23010897068787,324.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,354.0 Q 81.3061667584882,327.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,354.0 Q 318.6938332415118,327.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,360.0 Q 86.0292250900537,330.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,360.0 Q 313.9707749099463,330.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,366.0 Q 90.8918747863952,333.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,366.0 Q 309.1081252136048,333.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,372.0 Q 95.84552985912518,336.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,372.0 Q 304.1544701408748,336.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,378.0 Q 100.84069502421748,339.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,378.0 Q 299.1593049757825,339.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,384.0 Q 105.82746024252468,342.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,384.0 Q 294.1725397574753,342.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,390.0 Q 110.75599940439078,345.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,390.0 Q 289.24400059560924,345.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,396.0 Q 115.5770681756689,348.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,396.0 Q 284.4229318243311,348.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,402.0 Q 120.24249603082991,351.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,402.0 Q 279.7575039691701,351.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,408.0 Q 124.70566755693041,354.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,408.0 Q 275.2943324430696,354.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,414.0 Q 128.92198821941,357.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,414.0 Q 271.07801178059003,357.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,420.0 Q 132.84932993593947,360.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,420.0 Q 267.15067006406053,360.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,426.0 Q 136.4484520062938,363.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,426.0 Q 263.5515479937062,363.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,432.0 Q 139.68339319245766,366.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,432.0 Q 260.31660680754237,366.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,438.0 Q 142.52183103142823,369.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,438.0 Q 257.47816896857177,369.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,444.0 Q 145.93540479058134,372.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,444.0 Q 255.06459520941866,372.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,450.0 Q 146.89999883873696,375.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,450.0 Q 253.10000116126304,375.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,456.0 Q 148.3959836015743,378.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,456.0 Q 251.6040163984257,378.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,462.0 Q 149.40841169385,381.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,462.0 Q 250.59158830615,381.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,468.0 Q 149.92716726873024,384.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,468.0 Q 250.07283273126976,384.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,474.0 Q 149.9470670919886,387.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,474.0 Q 250.0529329080114,387.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,480.0 Q 149.4679123311691,390.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,480.0 Q 250.5320876688309,390.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,486.0 Q 148.4944905422543,393.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,486.0 Q 251.5055094577457,393.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,492.0 Q 147.03652783398866,396.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,492.0 Q 252.96347216601134,396.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,498.0 Q 145.10859168781468,399.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,498.0 Q 254.89140831218532,399.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,504.0 Q 142.72994540441402,402.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,504.0 Q 257.270054595586,402.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,510.0 Q 139.9243556311745,405.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,510.0 Q 260.07564436882546,405.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,516.0 Q 136.71985489370567,408.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,516.0 Q 263.2801451062943,408.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,522.0 Q 133.14846150410915,411.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,522.0 Q 266.85153849589085,411.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,528.0 Q 129.24585964458808,414.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,528.0 Q 270.7541403554119,414.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,534.0 Q 125.05104282289423,417.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,534.0 Q 274.94895717710574,417.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,540.0 Q 120.60592426208783,420.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,540.0 Q 279.3940757379122,420.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,546.0 Q 115.9549181174676,423.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,546.0 Q 284.0450818825324,423.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,552.0 Q 111.14449570501239,426.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,552.0 Q 288.8555042949876,426.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,558.0 Q 106.22272117535309,429.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,558.0 Q 293.77727882464694,429.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,564.0 Q 101.23877127266789,432.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,564.0 Q 298.7612287273321,432.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,570.0 Q 96.24244397690954,435.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,570.0 Q 303.75755602309044,435.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,576.0 Q 91.28366093885101,438.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,576.0 Q 308.716339061149,438.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,582.0 Q 86.41196867945288,441.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,582.0 Q 313.5880313205471,441.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,588.0 Q 81.67604353740359,444.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,588.0 Q 318.3239564625964,444.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 0,594.0 Q 77.12320531123393,447.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/><path d='M 400,594.0 Q 322.87679468876604,447.0 200.0,300.0' stroke='cyan' stroke-width='0.5' fill='none' opacity='0.5'/></svg>");
             background-size: cover;
             background-position: center;
         }
     </style>
 </head>
+
 <body class="bg-purple-dark text-white font-gilroy font-normal overflow-x-hidden">
     <div id="tsparticles" class="fixed inset-0 -z-10"></div>
-    <header class="absolute top-0 w-full border-b border-white/20 py-5 z-[1000]">
-        <div class="w-[90%] max-w-[1200px] mx-auto relative flex justify-between items-center">
-            <nav>
-                <ul class="flex items-center gap-[50px]">
-                    <li><a href="#" class="font-semibold text-[1.1rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary">Home</a></li>
-                    <li><a href="#" class="font-semibold text-[1.1rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary">About</a></li>
-                    <li><a href="#" class="font-semibold text-[1.1rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary">Liên hệ</a></li>
+    
+    <header class="absolute top-0 w-full border-b border-white/20 py-8 z-[1000]"> <!-- py-5 * 1.5 = py-8 -->
+        <div class="w-[90%] max-w-[1800px] mx-auto relative flex justify-between items-center"> <!-- max-w-[1200px] * 1.5 = max-w-[1800px] -->
+            <!-- Hamburger Menu Button (chỉ hiển thị trên mobile) -->
+            <div class="mobile-menu-btn md:hidden" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <nav id="mobile-nav">
+                <ul class="flex items-center gap-[75px]"> <!-- gap-[50px] * 1.5 = gap-[75px] -->
+                    <li><a href="#home" class="font-semibold text-[1.65rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary" onclick="closeMobileMenu()">Home</a></li> <!-- text-[1.1rem] * 1.5 = text-[1.65rem] -->
+                    <li><a href="#about" class="font-semibold text-[1.65rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary" onclick="closeMobileMenu()">About</a></li>
+                    <li><a href="#contact" class="font-semibold text-[1.65rem] transition-colors duration-300 ease-in-out hover:text-yellow-primary" onclick="closeMobileMenu()">Liên hệ</a></li>
                 </ul>
             </nav>
-            <a href="#" class="inline-block py-[14px] px-8 rounded-full font-bold uppercase transition-all duration-300 ease-in-out border-2 border-transparent text-base bg-yellow-primary text-brown-dark hover:scale-105">ĐĂNG KÝ NGAY</a>
+            <a href="#" class="inline-block py-[21px] px-12 rounded-full font-bold uppercase transition-all duration-300 ease-in-out border-2 border-transparent text-[1.5rem] bg-yellow-primary text-brown-dark hover:scale-105">ĐĂNG KÝ NGAY</a> <!-- py-[14px] * 1.5 = py-[21px], px-8 * 1.5 = px-12, text-base * 1.5 = text-[1.5rem] -->
         </div>
     </header>
 
     <main>
-        <section class="min-h-screen py-[100px] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center text-center relative" style="background-image: url('images/Asset 4.png');">
+        <section id="home" class="min-h-screen py-[150px] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center text-center relative" style="background-image: url('images/Asset 4.png');"> <!-- py-[100px] * 1.5 = py-[150px] -->
             <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-10">
-                <img src="images/Asset 8 - left.png" alt="Floating Coins Left" class="absolute bottom-20 left-[10%] w-[300px]" loading="lazy">
-                <img src="images/Asset 8-right.png" alt="Floating Coins Right" class="absolute bottom-20 right-[10%] w-[300px]" loading="lazy">
+                <img src="images/Asset 8 - left.png" alt="Floating Coins Left" class="absolute bottom-20 left-[10%] w-[450px]" loading="lazy"> <!-- w-[300px] * 1.5 = w-[450px] -->
+                <img src="images/Asset 8-right.png" alt="Floating Coins Right" class="absolute bottom-20 right-[10%] w-[450px]" loading="lazy">
             </div>
-            <div class="w-[90%] max-w-[1200px] mx-auto relative z-20 flex flex-col items-center">
-                <img src="images/Asset 5.png" alt="Hero Art Top" class="block w-[700px] max-w-[90%] -mb-5" loading="lazy">
-                <img src="images/Asset 6.png" alt="Fintech 2025 Title" class="max-w-[650px] mb-5" loading="lazy">
-                <h2 class="text-[1.4rem] font-bold max-w-[750px] mt-[10px] mb-10 mx-auto leading-normal text-white uppercase">CHƯƠNG TRÌNH TUYỂN CHỌN DỰ ÁN ĐỔI MỚI SÁNG TẠO, KHỞI NGHIỆP TRONG LĨNH VỰC CÔNG NGHỆ TÀI CHÍNH NĂM 2025</h2>
-                <div class="flex justify-center gap-5 mt-[30px]">
-                    <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-gradient-to-r from-yellow-primary to-yellow-secondary text-brown-dark font-heavy border-transparent hover:scale-105 hover:shadow-[0_0_20px_#fdda5f]">ĐĂNG KÝ DỰ THI</a>
-                    <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-yellow-primary text-yellow-primary font-bold hover:bg-yellow-primary hover:text-brown-dark">TÌM HIỂU THÊM</a>
+            <div class="w-[90%] max-w-[1800px] mx-auto relative z-20 flex flex-col items-center">
+                <div class="flex items-center justify-center gap-x-12 -mb-4">
+                    <img src="images/z6813773538295_c03f390fac558b2548153bff219eb939.PNG" alt="Sở Khoa học và Công nghệ TP.HCM" class="h-[250px]" loading="lazy">
+                    <img src="images/Asset 5.png" alt="Hero Art Top" class="block h-[200px]" loading="lazy">
+                </div>
+                <div class="w-full flex justify-center">
+                    <img src="images/Asset 6.png" alt="Fintech 2025 Title" class="max-w-[975px] mb-8" loading="lazy">
+                </div>
+                <h2 class="text-[2.1rem] font-bold max-w-[1125px] mt-[15px] mb-15 mx-auto leading-normal text-white uppercase">CHƯƠNG TRÌNH TUYỂN CHỌN DỰ ÁN ĐỔI MỚI SÁNG TẠO, KHỞI NGHIỆP TRONG LĨNH VỰC CÔNG NGHỆ TÀI CHÍNH NĂM 2025</h2> <!-- text-[1.4rem] * 1.5 = text-[2.1rem], max-w-[750px] * 1.5 = max-w-[1125px], mt-[10px] * 1.5 = mt-[15px], mb-10 * 1.5 = mb-15 -->
+                <div class="flex justify-center gap-8 mt-[45px]"> <!-- gap-5 * 1.5 = gap-8, mt-[30px] * 1.5 = mt-[45px] -->
+                    <a href="#" class="inline-block py-[21px] px-12 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-gradient-to-r from-yellow-primary to-yellow-secondary text-brown-dark font-heavy border-transparent hover:scale-105 hover:shadow-[0_0_30px_#fdda5f]">ĐĂNG KÝ DỰ THI</a> <!-- py-[14px] * 1.5 = py-[21px], px-8 * 1.5 = px-12, hover:shadow-[0_0_20px_#fdda5f] * 1.5 = hover:shadow-[0_0_30px_#fdda5f] -->
+                    <a href="#" class="inline-block py-[21px] px-12 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-yellow-primary text-yellow-primary font-bold hover:bg-yellow-primary hover:text-brown-dark">TÌM HIỂU THÊM</a>
                 </div>
             </div>
         </section>
 
-        <div class="relative bg-no-repeat bg-cover bg-center">
+        <div id="about" class="relative bg-no-repeat bg-cover bg-center">
             <div class="min-h-screen flex items-center justify-center">
-                <section class="w-[90%] max-w-[1200px] mx-auto text-center relative">
+                <section class="w-[90%] max-w-[1800px] mx-auto text-center relative">
                     <div class="max-w-[50%] text-left">
-                        <h3 class="text-yellow-primary text-2xl font-bold uppercase m-0">Thông tin</h3>
-                        <h4 class="text-white text-[4.5rem] font-heavy uppercase leading-tight mt-[10px] mb-[30px]">Chương trình</h4>
-                        <p class="text-purple-light text-base leading-[1.8] mb-10">Công nghệ tài chính (Fintech) được hiểu là việc áp dụng công nghệ vào hoạt động tài chính - ngân hàng để tạo ra các sản phẩm, dịch vụ mới với hiệu quả cao hơn, chi phí thấp hơn, tiện lợi hơn. Fintech đã và đang thay đổi sâu sắc ngành tài chính - ngân hàng truyền thống, mang lại nhiều lợi ích cho người dùng và nền kinh tế. Với sự phát triển của Internet và các công nghệ mới, Fintech ngày càng có nhiều tiềm năng phát triển, đặc biệt là tại các khu vực đang phát triển như Việt Nam. Theo báo cáo của Appota (12/5/2021) về thị trường ứng dụng di động tại Việt Nam năm 2020, Việt Nam nằm trong top 12 những quốc gia có giá thành Internet rẻ nhất thế giới, đứng thứ 2 Đông Nam Á về tốc độ Internet trên thiết bị di động.</p>
-                        <a href="#" class="inline-block rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-white text-white py-[10px] px-[30px] font-bold hover:bg-white hover:text-purple-dark">XEM THÊM</a>
+                        <h3 class="text-yellow-primary text-4xl font-bold uppercase m-0">Thông tin</h3> <!-- text-2xl * 1.5 = text-4xl -->
+                        <h4 class="text-white text-[6.75rem] font-heavy uppercase leading-tight mt-[15px] mb-[45px]">Chương trình</h4> <!-- text-[4.5rem] * 1.5 = text-[6.75rem], mt-[10px] * 1.5 = mt-[15px], mb-[30px] * 1.5 = mb-[45px] -->
+                        <p id="info-p" class="collapsed-text text-purple-light text-[1.5rem] leading-[1.8] mb-15">Công nghệ tài chính (Fintech) được hiểu là việc áp dụng công nghệ vào hoạt động tài chính - ngân hàng để tạo ra các sản phẩm, dịch vụ mới với hiệu quả cao hơn, chi phí thấp hơn, tiện lợi hơn. Fintech đã và đang thay đổi sâu sắc ngành tài chính - ngân hàng truyền thống, mang lại nhiều lợi ích cho người dùng và nền kinh tế. Với sự phát triển của Internet và các công nghệ mới, Fintech ngày càng có nhiều tiềm năng phát triển, đặc biệt là tại các khu vực đang phát triển như Việt Nam. Theo báo cáo của Appota (12/5/2021) về thị trường ứng dụng di động tại Việt Nam năm 2020, Việt Nam nằm trong top 12 những quốc gia có giá thành Internet rẻ nhất thế giới, đứng thứ 2 Đông Nam Á về tốc độ Internet trên thiết bị di động.</p> <!-- text-base * 1.5 = text-[1.5rem], mb-10 * 1.5 = mb-15 -->
+                        <a href="#" id="toggle-info-btn" class="inline-block rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-white text-white py-[14px] px-[40px] text-[1.35rem] font-bold hover:bg-white hover:text-purple-dark">XEM THÊM</a> <!-- py-[10px] * 1.5 = py-[15px], px-[30px] * 1.5 = px-[45px] -->
                     </div>
                 </section>
             </div>
 
             <section class="min-h-screen flex items-center justify-center">
-                <div class="flex gap-10 items-center w-[90%] max-w-[1200px] mx-auto">
-                    <div class="flex-[2] flex flex-row gap-[30px]">
-                        <div class="bg-no-repeat relative p-[50px_40px] min-h-[200px] box-border" style="background-image: url('images/1.png'); background-size: 100% 100%;">
-                            <div class="absolute top-[3px] right-[35px] text-yellow-primary font-extrabold text-[23px]">NHÓM 1</div>
+                <div class="flex gap-15 items-center w-[90%] max-w-[1800px] mx-auto"> <!-- gap-10 * 1.5 = gap-15 -->
+                    <div class="flex-[2] flex flex-row gap-[45px]"> <!-- gap-[30px] * 1.5 = gap-[45px] -->
+                        <div class="bg-no-repeat relative p-[75px_60px] min-h-[300px] box-border" style="background-image: url('images/1.png'); background-size: 100% 100%;"> <!-- p-[50px_40px] * 1.5 = p-[75px_60px], min-h-[200px] * 1.5 = min-h-[300px] -->
+                            <div class="absolute top-[5px] right-[5px] text-yellow-primary font-extrabold text-[35px]">NHÓM 1</div> <!-- top-[3px] * 1.5 = top-[5px], right-[35px] * 1.5 = right-[53px], text-[23px] * 1.5 = text-[35px] -->
                             <div class="card-body">
-                                <p class="text-white text-[18px] leading-[1.7] m-0"><strong class="text-yellow-primary font-bold">(Giai đoạn tiền ươm tạo):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có <strong class="text-yellow-primary font-bold">ý tưởng đổi mới sáng tạo</strong> trong lĩnh vực công nghệ tài chính có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
+                                <p class="text-white text-[22px] leading-[1.7] m-0"><strong class="text-yellow-primary font-bold">(Giai đoạn tiền ươm tạo):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có <strong class="text-yellow-primary font-bold">ý tưởng đổi mới sáng tạo</strong> trong lĩnh vực công nghệ tài chính có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p> <!-- text-[27px] * 0.92 = text-[25px] -->
                             </div>
                         </div>
-                        <div class="bg-no-repeat relative p-[50px_40px] min-h-[200px] box-border" style="background-image: url('images/1.png'); background-size: 100% 100%;">
-                            <div class="absolute top-[3px] right-[35px] text-yellow-primary font-extrabold text-[23px]">NHÓM 2</div>
+                        <div class="bg-no-repeat relative p-[75px_60px] min-h-[300px] box-border" style="background-image: url('images/1.png'); background-size: 100% 100%;">
+                            <div class="absolute top-[5px] right-[5px] text-yellow-primary font-extrabold text-[35px]">NHÓM 2</div>
                             <div class="card-body">
-                                <p class="text-white text-[18px] leading-[1.7] m-0"><strong class="text-yellow-primary font-bold">(Giai đoạn ươm tạo tốc độ):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có các gói giải pháp, hình đổi mới sáng tạo... trong lĩnh vực công nghệ tài chính đã thành phẩm, có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p>
+                                <p class="text-white text-[22px] leading-[1.7] m-0"><strong class="text-yellow-primary font-bold">(Giai đoạn ươm tạo tốc độ):</strong> Cá nhân, nhóm cá nhân, doanh nghiệp và tổ chức có các gói giải pháp, hình đổi mới sáng tạo... trong lĩnh vực công nghệ tài chính đã thành phẩm, có khả năng chuyển giao, ứng dụng vào đời sống, sản xuất, kinh doanh.</p> <!-- text-[27px] * 0.92 = text-[25px] -->
                             </div>
                         </div>
                     </div>
-                    <div class="flex-1 text-left">
-                        <h4 class="text-white font-medium uppercase leading-none text-2xl">ĐỐI TƯỢNG<br><span class="text-[4.5rem] font-heavy block">THAM GIA</span></h4>
+                    <div class="flex-1 text-right">
+                        <h4 class="text-white font-medium uppercase leading-none text-4xl">ĐỐI TƯỢNG<br><span class="text-[6.75rem] font-heavy block">THAM GIA</span></h4> <!-- text-2xl * 1.5 = text-4xl, text-[4.5rem] * 1.5 = text-[6.75rem] -->
                     </div>
                 </div>
             </section>
 
             <section class="min-h-screen flex items-center justify-center">
-                <div class="flex gap-5 items-center w-[90%] max-w-[1200px] mx-auto">
+                <div class="flex gap-8 items-center w-[90%] max-w-[1800px] mx-auto"> <!-- gap-5 * 1.5 = gap-8 -->
                     <div class="flex-1 text-left">
-                        <h4 class="text-white font-medium uppercase leading-none text-2xl">Điều Kiện<br><span class="text-[4.5rem] font-heavy block">THAM GIA</span></h4>
+                        <h4 class="text-white font-medium uppercase leading-none text-4xl">Điều Kiện<br><span class="text-[6.75rem] font-heavy block">THAM GIA</span></h4>
                     </div>
                     <div class="flex-[1.5] flex flex-col">
-                        <div class="flex gap-5">
-                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
-                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Có ý tưởng, sản phẩm/giải pháp/dịch vụ/mô hình đổi mới sáng tạo thuộc các ngành trong lĩnh vực phát triển vùng có tiềm năng.</p>
+                        <div class="flex gap-8"> <!-- gap-5 * 1.5 = gap-8 -->
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[45px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;"> <!-- p-[30px] * 1.5 = p-[45px] -->
+                                <p class="text-purple-light text-[1.5rem] leading-relaxed m-0 text-justify">Có ý tưởng, sản phẩm/giải pháp/dịch vụ/mô hình đổi mới sáng tạo thuộc các ngành trong lĩnh vực phát triển vùng có tiềm năng.</p> <!-- text-base * 1.5 = text-[1.5rem] -->
                             </div>
-                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
-                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Cam kết tham gia đầy đủ các hoạt động hỗ trợ của Chương trình.</p>
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[45px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
+                                <p class="text-purple-light text-[1.5rem] leading-relaxed m-0 text-justify">Cam kết tham gia đầy đủ các hoạt động hỗ trợ của Chương trình.</p>
                             </div>
                         </div>
-                        <div class="flex gap-5 relative left-[50px] mt-5">
-                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
-                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Tổ chức, cá nhân dự tuyển có thể có một hoặc nhiều dự án ứng dụng ở một hoặc nhiều lĩnh vực của chương trình.</p>
+                        <div class="flex gap-8 relative left-[75px] mt-8"> <!-- gap-5 * 1.5 = gap-8, left-[50px] * 1.5 = left-[75px], mt-5 * 1.5 = mt-8 -->
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[45px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
+                                <p class="text-purple-light text-[1.5rem] leading-relaxed m-0 text-justify">Tổ chức, cá nhân dự tuyển có thể có một hoặc nhiều dự án ứng dụng ở một hoặc nhiều lĩnh vực của chương trình.</p>
                             </div>
-                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[30px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
-                                <p class="text-purple-light text-base leading-relaxed m-0 text-justify">Các giải pháp đăng ký tham gia không xâm phạm quyền sở hữu trí tuệ theo quy định và chịu trách nhiệm về tính xác thực của thông tin trong hồ sơ tham dự (nếu có).</p>
+                            <div class="bg-no-repeat aspect-square w-1/2 flex items-center justify-center p-[45px] box-border" style="background-image: url('images/2.png'); background-size: 100% 100%;">
+                                <p class="text-purple-light text-[1.5rem] leading-relaxed m-0 text-justify">Các giải pháp đăng ký tham gia không xâm phạm quyền sở hữu trí tuệ theo quy định và chịu trách nhiệm về tính xác thực của thông tin trong hồ sơ tham dự (nếu có).</p>
                             </div>
                         </div>
                     </div>
@@ -219,114 +969,114 @@
 
             <section class="min-h-screen flex items-center justify-center relative">
                 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(221,137,27,0.953)] to-transparent z-10"></div>
-                <div class="relative z-20 w-[90%] max-w-[1200px] mx-auto text-left">
+                <div class="relative z-20 w-[90%] max-w-[1800px] mx-auto text-left">
                     <div class="registration-title">
-                        <h3 class="text-2xl font-medium uppercase m-0 text-white">Hồ sơ đăng ký</h3>
-                        <h4 class="text-[4.5rem] font-heavy uppercase leading-tight mb-[15px] text-white">THAM GIA</h4>
-                        <p class="text-base text-purple-light mb-[50px]">Tiếp nhận hồ sơ gồm Tên dự án - Số điện thoại gửi về email: Fintech@sihub.gov.vn</p>
+                        <h3 class="text-4xl font-medium uppercase m-0 text-white">Hồ sơ đăng ký</h3> <!-- text-2xl * 1.5 = text-4xl -->
+                        <h4 class="text-[6.75rem] font-heavy uppercase leading-tight mb-[23px] text-white">THAM GIA</h4> <!-- text-[4.5rem] * 1.5 = text-[6.75rem], mb-[15px] * 1.5 = mb-[23px] -->
+                        <p class="text-[1.5rem] text-purple-light mb-[75px]">Tiếp nhận hồ sơ gồm Tên dự án - Số điện thoại gửi về email: Fintech@sihub.gov.vn</p> <!-- text-base * 1.5 = text-[1.5rem], mb-[50px] * 1.5 = mb-[75px] -->
                     </div>
-                    <div class="flex justify-between gap-10 mb-[60px]">
-                        <div class="flex items-center gap-5">
+                    <div class="flex justify-between gap-15 mb-[90px]"> <!-- gap-10 * 1.5 = gap-15, mb-[60px] * 1.5 = mb-[90px] -->
+                        <div class="flex items-center gap-8"> <!-- gap-5 * 1.5 = gap-8 -->
                             <div class="step-number" data-text="1">1</div>
                             <div class="step-text">
-                                <h5 class="text-[1.2rem] font-bold uppercase text-yellow-primary mb-[5px] m-0">PHIẾU ĐĂNG KÝ THAM DỰ CHƯƠNG TRÌNH</h5>
-                                <span class="text-base font-medium text-white">1 BẢN</span>
+                                <h5 class="text-[1.8rem] font-bold uppercase text-yellow-primary mb-[8px] m-0">PHIẾU ĐĂNG KÝ THAM DỰ CHƯƠNG TRÌNH</h5> <!-- text-[1.2rem] * 1.5 = text-[1.8rem], mb-[5px] * 1.5 = mb-[8px] -->
+                                <span class="text-[1.5rem] font-medium text-white">1 BẢN</span> <!-- text-base * 1.5 = text-[1.5rem] -->
                             </div>
                         </div>
-                        <div class="flex items-center gap-5">
+                        <div class="flex items-center gap-8">
                             <div class="step-number" data-text="2">2</div>
                             <div class="step-text">
-                                <h5 class="text-[1.2rem] font-bold uppercase text-yellow-primary mb-[5px] m-0">THUYẾT MINH DỰ ÁN</h5>
-                                <span class="text-base font-medium text-white">Tham khảo mẫu của ban tổ chức (1 bản)</span>
+                                <h5 class="text-[1.8rem] font-bold uppercase text-yellow-primary mb-[8px] m-0">THUYẾT MINH DỰ ÁN</h5>
+                                <span class="text-[1.5rem] font-medium text-white">Tham khảo mẫu của ban tổ chức (1 bản)</span>
                             </div>
                         </div>
-                        <div class="flex items-center gap-5">
+                        <div class="flex items-center gap-8">
                             <div class="step-number" data-text="3">3</div>
                             <div class="step-text">
-                                <h5 class="text-[1.2rem] font-bold uppercase text-yellow-primary mb-[5px] m-0">TÀI LIỆU KHÁC GIỚI THIỆU VỀ DỰ ÁN (NẾU CÓ)</h5>
-                                <span class="text-base font-medium text-white">1 BẢN</span>
+                                <h5 class="text-[1.8rem] font-bold uppercase text-yellow-primary mb-[8px] m-0">TÀI LIỆU KHÁC GIỚI THIỆU VỀ DỰ ÁN (NẾU CÓ)</h5>
+                                <span class="text-[1.5rem] font-medium text-white">1 BẢN</span>
                             </div>
                         </div>
                     </div>
-                    <div class="flex gap-5">
-                        <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-gradient-to-r from-yellow-primary to-yellow-secondary text-brown-dark font-heavy border-transparent hover:scale-105 hover:shadow-[0_0_20px_#fdda5f]">ĐĂNG KÝ DỰ THI</a>
-                        <a href="#" class="inline-block py-[14px] px-8 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-yellow-primary text-yellow-primary font-bold hover:bg-yellow-primary hover:text-brown-dark">TẢI MẪU THUYẾT MINH</a>
+                    <div class="flex gap-8"> <!-- gap-5 * 1.5 = gap-8 -->
+                        <a href="#" class="inline-block py-[21px] px-12 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-gradient-to-r from-yellow-primary to-yellow-secondary text-brown-dark font-heavy border-transparent hover:scale-105 hover:shadow-[0_0_30px_#fdda5f]">ĐĂNG KÝ DỰ THI</a> <!-- py-[14px] * 1.5 = py-[21px], px-8 * 1.5 = px-12, hover:shadow-[0_0_20px_#fdda5f] * 1.5 = hover:shadow-[0_0_30px_#fdda5f] -->
+                        <a href="#" class="inline-block py-[21px] px-12 rounded-full uppercase transition-all duration-300 ease-in-out border-2 bg-transparent border-yellow-primary text-yellow-primary font-bold hover:bg-yellow-primary hover:text-brown-dark">TẢI MẪU THUYẾT MINH</a>
                     </div>
                 </div>
             </section>
 
             <section class="min-h-screen flex items-center justify-center relative">
-                <div class="w-full max-w-[1200px] mx-auto flex flex-col items-end">
-                    <div class="text-right max-w-[450px]">
-                        <h3 class="text-2xl font-medium uppercase m-0 text-white">TIÊU CHÍ</h3>
-                        <h4 class="text-[4.5rem] font-heavy uppercase leading-tight mb-[15px] text-white">TUYỂN CHỌN</h4>
-                        <p class="text-[0.9rem] text-purple-light">*Tiêu chí chỉ ứng dụng công nghệ bao gồm: Giao diện ứng dụng; Nền tảng lập trình; Khả năng tương thích người dùng; Chiến lược phát triển công nghệ.</p>
+                <div class="w-[90%] max-w-[1800px] mx-auto flex flex-col items-end">
+                    <div class="text-right max-w-[675px]"> <!-- max-w-[450px] * 1.5 = max-w-[675px] -->
+                        <h3 class="text-4xl font-medium uppercase m-0 text-white">TIÊU CHÍ</h3> <!-- text-2xl * 1.5 = text-4xl -->
+                        <h4 class="text-[6.75rem] font-heavy uppercase leading-tight mb-[23px] text-white">TUYỂN CHỌN</h4> <!-- text-[4.5rem] * 1.5 = text-[6.75rem], mb-[15px] * 1.5 = mb-[23px] -->
+                        <p class="text-[1.35rem] text-purple-light">*Tiêu chí chỉ ứng dụng công nghệ bao gồm: Giao diện ứng dụng; Nền tảng lập trình; Khả năng tương thích người dùng; Chiến lược phát triển công nghệ.</p> <!-- text-[0.9rem] * 1.5 = text-[1.35rem] -->
                     </div>
-                    <div class="relative w-full h-[450px] mt-5">
-                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-0" style="background-image: url('images/Asset 7.png');"><span>Tính sáng tạo</span></div>
-                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-1/4" style="background-image: url('images/Asset 7.png');"><span>Năng lực<br>thực hiện</span></div>
-                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-1/2" style="background-image: url('images/Asset 7.png');"><span>Khả năng<br>áp dụng vào trong<br>thực tế</span></div>
-                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-3/4" style="background-image: url('images/Asset 7.png');"><span>Thị trường<br>tiềm năng</span></div>
-                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[12.5%]" style="background-image: url('images/Asset 7.png');"><span>Hiệu quả<br>kinh tế<br>hoặc tác động<br>xã hội</span></div>
-                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[37.5%]" style="background-image: url('images/Asset 7.png');"><span>Ứng dụng<br>công nghệ</span></div>
-                        <div class="absolute w-[200px] h-[200px] flex items-center justify-center text-center text-white font-semibold text-[1.1rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[62.5%]" style="background-image: url('images/Asset 7.png');"><span>Mô hình<br>kinh doanh</span></div>
+                    <div class="relative w-full h-[675px] mt-8"> <!-- h-[450px] * 1.5 = h-[675px], mt-5 * 1.5 = mt-8 -->
+                        <div class="absolute w-[300px] h-[300px] flex items-center justify-center text-center text-white font-semibold text-[1.65rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-0" style="background-image: url('images/Asset 7.png');"><span>Tính sáng tạo</span></div> <!-- w-[200px] * 1.5 = w-[300px], h-[200px] * 1.5 = h-[300px], text-[1.1rem] * 1.5 = text-[1.65rem] -->
+                        <div class="absolute w-[300px] h-[300px] flex items-center justify-center text-center text-white font-semibold text-[1.65rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-1/4" style="background-image: url('images/Asset 7.png');"><span>Năng lực<br>thực hiện</span></div>
+                        <div class="absolute w-[300px] h-[300px] flex items-center justify-center text-center text-white font-semibold text-[1.65rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-1/2" style="background-image: url('images/Asset 7.png');"><span>Khả năng<br>áp dụng vào trong<br>thực tế</span></div>
+                        <div class="absolute w-[300px] h-[300px] flex items-center justify-center text-center text-white font-semibold text-[1.65rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-0 left-3/4" style="background-image: url('images/Asset 7.png');"><span>Thị trường<br>tiềm năng</span></div>
+                        <div class="absolute w-[300px] h-[300px] flex items-center justify-center text-center text-white font-semibold text-[1.65rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[12.5%]" style="background-image: url('images/Asset 7.png');"><span>Hiệu quả<br>kinh tế<br>hoặc tác động<br>xã hội</span></div>
+                        <div class="absolute w-[300px] h-[300px] flex items-center justify-center text-center text-white font-semibold text-[1.65rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[37.5%]" style="background-image: url('images/Asset 7.png');"><span>Ứng dụng<br>công nghệ</span></div>
+                        <div class="absolute w-[300px] h-[300px] flex items-center justify-center text-center text-white font-semibold text-[1.65rem] leading-[1.4] transition-transform duration-300 ease-in-out hover:scale-110 bg-contain bg-no-repeat bg-center top-1/2 left-[62.5%]" style="background-image: url('images/Asset 7.png');"><span>Mô hình<br>kinh doanh</span></div>
                     </div>
                 </div>
             </section>
 
-            <section class="py-20 flex flex-col items-center gap-10 text-center relative">
-                <div class="text-left w-[90%] max-w-[1200px]">
-                    <h3 class="text-2xl font-medium uppercase m-0 text-white">HOẠT ĐỘNG CỦA CHƯƠNG TRÌNH</h3>
-                    <h4 class="text-[4.5rem] font-heavy uppercase leading-tight m-0 text-white">VÀ QUY TRÌNH XÉT CHỌN</h4>
+            <section class="py-30 flex flex-col items-center gap-15 text-center relative"> <!-- py-20 * 1.5 = py-30, gap-10 * 1.5 = gap-15 -->
+                <div class="text-left w-[90%] max-w-[1800px]">
+                    <h3 class="text-4xl font-medium uppercase m-0 text-white">HOẠT ĐỘNG CỦA CHƯƠNG TRÌNH</h3> <!-- text-2xl * 1.5 = text-4xl -->
+                    <h4 class="text-[6.75rem] font-heavy uppercase leading-tight m-0 text-white">VÀ QUY TRÌNH XÉT CHỌN</h4> <!-- text-[4.5rem] * 1.5 = text-[6.75rem] -->
                 </div>
-                <div class="relative w-[90%] max-w-[1200px] h-[500px] bg-no-repeat" style="background-image: url('images/Asset 8.png'); background-size: 100% 100%;">
-                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[15%] left-[5%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 4-8/2025</span><p class="text-[0.9rem] m-0">Liên hệ và kết nối với sở ngành đơn vị</p></div>
-                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[15%] left-[40%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 8/2025</span><p class="text-[0.9rem] m-0">Tổ chức buổi tiệc kết nối chuyên gia</p></div>
-                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[10%] left-[72%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 4-8/2025</span><p class="text-[0.9rem] m-0">Tiếp nhận hồ sơ</p></div>
-                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[5%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 9/2025</span><p class="text-[0.9rem] m-0">Vòng sơ tuyển và huấn luyện kỹ năng</p></div>
-                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[33.6%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 9-10/2025</span><p class="text-[0.9rem] m-0">Vòng tranh đấu và công bố kết quả tuyển chọn</p></div>
-                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[72%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">Tháng 11/2025</span><p class="text-[0.9rem] m-0">Tham gia hoạt động Sở khoa học và Công nghệ tổ chức</p></div>
-                    <div class="absolute text-white p-2.5 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[78%] left-[5%]"><span class="font-bold text-[1.1rem] text-yellow-primary block mb-[5px]">2026</span><p class="text-[0.9rem] m-0">Ươm tạo 35 dự án FINTECH</p></div>
+                <div class="relative w-[90%] max-w-[1800px] h-[750px] bg-no-repeat" style="background-image: url('images/Asset 8.png'); background-size: 100% 100%;"> <!-- h-[500px] * 1.5 = h-[750px] -->
+                    <div class="absolute text-white p-4 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[15%] left-[5%]"><span class="font-bold text-[1.65rem] text-yellow-primary block mb-[8px]">Tháng 4-8/2025</span><p class="text-[1.35rem] m-0">Liên hệ và kết nối với sở ngành đơn vị</p></div> <!-- p-2.5 * 1.5 = p-4, text-[1.1rem] * 1.5 = text-[1.65rem], mb-[5px] * 1.5 = mb-[8px], text-[0.9rem] * 1.5 = text-[1.35rem] -->
+                    <div class="absolute text-white p-4 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[15%] left-[40%]"><span class="font-bold text-[1.65rem] text-yellow-primary block mb-[8px]">Tháng 8/2025</span><p class="text-[1.35rem] m-0">Tổ chức buổi tiệc kết nối chuyên gia</p></div>
+                    <div class="absolute text-white p-4 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[10%] left-[72%]"><span class="font-bold text-[1.65rem] text-yellow-primary block mb-[8px]">Tháng 4-8/2025</span><p class="text-[1.35rem] m-0">Tiếp nhận hồ sơ</p></div>
+                    <div class="absolute text-white p-4 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[5%]"><span class="font-bold text-[1.65rem] text-yellow-primary block mb-[8px]">Tháng 9/2025</span><p class="text-[1.35rem] m-0">Vòng sơ tuyển và huấn luyện kỹ năng</p></div>
+                    <div class="absolute text-white p-4 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[33.6%]"><span class="font-bold text-[1.65rem] text-yellow-primary block mb-[8px]">Tháng 9-10/2025</span><p class="text-[1.35rem] m-0">Vòng tranh đấu và công bố kết quả tuyển chọn</p></div>
+                    <div class="absolute text-white p-4 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[53%] left-[72%]"><span class="font-bold text-[1.65rem] text-yellow-primary block mb-[8px]">Tháng 11/2025</span><p class="text-[1.35rem] m-0">Tham gia hoạt động Sở khoa học và Công nghệ tổ chức</p></div>
+                    <div class="absolute text-white p-4 transition-transform duration-300 ease-in-out text-right hover:scale-110 top-[78%] left-[5%]"><span class="font-bold text-[1.65rem] text-yellow-primary block mb-[8px]">2026</span><p class="text-[1.35rem] m-0">Ươm tạo 35 dự án FINTECH</p></div>
                 </div>
             </section>
 
-            <section class="py-[100px] relative overflow-hidden">
-                <div class="absolute top-1/4 -left-1/4 w-[150%] h-[250px] bg-gradient-to-r from-transparent via-yellow-secondary/30 to-transparent z-10 blur-[40px] -rotate-6"></div>
-                <div class="w-[90%] max-w-[1200px] mx-auto relative z-20">
-                    <div class="text-center mb-[60px]">
-                        <h2 class="text-[2.8rem] font-extrabold text-white uppercase leading-tight">Quyền lợi và Mức kinh phí hỗ trợ</h2>
+            <section class="py-[150px] relative overflow-hidden"> <!-- py-[100px] * 1.5 = py-[150px] -->
+                <div class="absolute top-1/4 -left-1/4 w-[150%] h-[375px] bg-gradient-to-r from-transparent via-yellow-secondary/30 to-transparent z-10 blur-[60px] -rotate-6"></div> <!-- h-[250px] * 1.5 = h-[375px], blur-[40px] * 1.5 = blur-[60px] -->
+                <div class="w-[90%] max-w-[1800px] mx-auto relative z-20">
+                    <div class="text-center mb-[90px]"> <!-- mb-[60px] * 1.5 = mb-[90px] -->
+                        <h2 class="text-[4.2rem] font-extrabold text-white uppercase leading-tight">Quyền lợi và Mức kinh phí hỗ trợ</h2> <!-- text-[2.8rem] * 1.5 = text-[4.2rem] -->
                     </div>
-                    <div class="flex justify-around items-start text-center mb-[100px] max-w-[1000px] mx-auto">
+                    <div class="flex justify-around items-start text-center mb-[150px] max-w-[1500px] mx-auto"> <!-- mb-[100px] * 1.5 = mb-[150px], max-w-[1000px] * 1.5 = max-w-[1500px] -->
                         <div>
-                            <div class="text-4xl font-extrabold text-yellow-secondary" style="text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);">40 Triệu</div>
-                            <p class="text-base font-medium text-white/80 mt-2.5">Dự án, không quá 6 tháng</p>
+                            <div class="text-6xl font-extrabold text-yellow-secondary" style="text-shadow: 0 0 23px rgba(246, 184, 76, 0.5);">40 Triệu</div> <!-- text-4xl * 1.5 = text-6xl, text-shadow: 0 0 15px * 1.5 = text-shadow: 0 0 23px -->
+                            <p class="text-[1.5rem] font-medium text-white/80 mt-4">Dự án, không quá 6 tháng</p> <!-- text-base * 1.5 = text-[1.5rem], mt-2.5 * 1.5 = mt-4 -->
                         </div>
                         <div>
-                            <div class="text-4xl font-extrabold text-yellow-secondary" style="text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);">80 Triệu</div>
-                            <p class="text-base font-medium text-white/80 mt-2.5">Dự án, không quá 12 tháng</p>
+                            <div class="text-6xl font-extrabold text-yellow-secondary" style="text-shadow: 0 0 23px rgba(246, 184, 76, 0.5);">80 Triệu</div>
+                            <p class="text-[1.5rem] font-medium text-white/80 mt-4">Dự án, không quá 12 tháng</p>
                         </div>
                         <div>
-                            <div class="text-4xl font-extrabold text-yellow-secondary opacity-50" style="text-shadow: 0 0 15px rgba(246, 184, 76, 0.5);">400 Triệu</div>
-                            <p class="text-base font-medium text-white/80 mt-2.5">Dự án, không quá 12 tháng</p>
+                            <div class="text-6xl font-extrabold text-yellow-secondary opacity-50" style="text-shadow: 0 0 23px rgba(246, 184, 76, 0.5);">400 Triệu</div>
+                            <p class="text-[1.5rem] font-medium text-white/80 mt-4">Dự án, không quá 12 tháng</p>
                         </div>
                     </div>
-                    <div class="flex justify-center gap-[60px] items-start">
-                        <div class="w-[45%] max-w-[480px] relative">
-                            <h3 class="absolute top-0 left-0 m-0 h-[45px] w-[200px] flex items-center justify-center text-[1.4rem] font-extrabold uppercase bg-yellow-primary text-purple-dark rounded-t-xl z-30 pb-2.5" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);">QUYỀN LỢI</h3>
-                            <div class="bg-yellow-primary text-purple-dark p-10 pt-[50px] text-left rounded-xl min-h-[220px]">
+                    <div class="flex justify-center gap-[90px] items-start"> <!-- gap-[60px] * 1.5 = gap-[90px] -->
+                        <div class="w-[45%] max-w-[720px] relative"> <!-- max-w-[480px] * 1.5 = max-w-[720px] -->
+                            <h3 class="absolute top-0 left-0 m-0 h-[68px] w-[300px] flex items-center justify-center text-[2.1rem] font-extrabold uppercase bg-yellow-primary text-purple-dark rounded-t-xl z-30 pb-4" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);">QUYỀN LỢI</h3> <!-- h-[45px] * 1.5 = h-[68px], w-[200px] * 1.5 = w-[300px], text-[1.4rem] * 1.5 = text-[2.1rem], pb-2.5 * 1.5 = pb-4 -->
+                            <div class="bg-yellow-primary text-purple-dark p-15 pt-[75px] text-left rounded-xl min-h-[330px]"> <!-- p-10 * 1.5 = p-15, pt-[50px] * 1.5 = pt-[75px], min-h-[220px] * 1.5 = min-h-[330px] -->
                                 <ul class="list-none p-0 m-0">
-                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được huấn luyện, cố vấn, ươm tạo để hoàn thiện giải pháp</li>
-                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được hỗ trợ không gian làm việc chung tại SIHUB.</li>
-                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được công bố, quảng bá trên các phương tiện truyền thông của BTC.</li>
+                                    <li class="mb-[23px] leading-relaxed text-[1.5rem] font-medium relative pl-[38px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.8rem]"> </span>Được huấn luyện, cố vấn, ươm tạo để hoàn thiện giải pháp</li> <!-- mb-[15px] * 1.5 = mb-[23px], text-base * 1.5 = text-[1.5rem], pl-[25px] * 1.5 = pl-[38px], text-[1.2rem] * 1.5 = text-[1.8rem] -->
+                                    <li class="mb-[23px] leading-relaxed text-[1.5rem] font-medium relative pl-[38px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.8rem]"> </span>Được hỗ trợ không gian làm việc chung tại SIHUB.</li>
+                                    <li class="mb-[23px] leading-relaxed text-[1.5rem] font-medium relative pl-[38px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.8rem]"> </span>Được công bố, quảng bá trên các phương tiện truyền thông của BTC.</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="w-[45%] max-w-[480px] relative">
-                            <h3 class="absolute top-0 left-0 m-0 h-[45px] w-[200px] flex items-center justify-center text-[1.4rem] font-extrabold uppercase bg-yellow-primary text-purple-dark rounded-t-xl z-30 pb-2.5" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);">QUYỀN LỢI</h3>
-                            <div class="bg-yellow-primary text-purple-dark p-10 pt-[50px] text-left rounded-xl min-h-[220px]">
+                        <div class="w-[45%] max-w-[720px] relative">
+                            <h3 class="absolute top-0 left-0 m-0 h-[68px] w-[300px] flex items-center justify-center text-[2.1rem] font-extrabold uppercase bg-yellow-primary text-purple-dark rounded-t-xl z-30 pb-4" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);">QUYỀN LỢI</h3>
+                            <div class="bg-yellow-primary text-purple-dark p-15 pt-[75px] text-left rounded-xl min-h-[330px]">
                                 <ul class="list-none p-0 m-0">
-                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được tham gia các chương trình hỗ trợ của Sở Khoa học và Công nghệ, các chương trình đào tạo, kết nối.</li>
-                                    <li class="mb-[15px] leading-relaxed text-base font-medium relative pl-[25px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.2rem]"> • </span>Được hỗ trợ một phần kinh phí và có cơ hội được kết nối đầu tư/ tư vấn đăng ký sở hữu trí tuệ</li>
+                                    <li class="mb-[23px] leading-relaxed text-[1.5rem] font-medium relative pl-[38px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.8rem]"> </span>Được tham gia các chương trình hỗ trợ của Sở Khoa học và Công nghệ, các chương trình đào tạo, kết nối.</li>
+                                    <li class="mb-[23px] leading-relaxed text-[1.5rem] font-medium relative pl-[38px]"><span class="absolute left-0 top-0 text-purple-dark font-heavy text-[1.8rem]"> </span>Được hỗ trợ một phần kinh phí và có cơ hội được kết nối đầu tư/ tư vấn đăng ký sở hữu trí tuệ</li>
                                 </ul>
                             </div>
                         </div>
@@ -334,44 +1084,44 @@
                 </div>
             </section>
 
-            <section class="py-[100px] text-center">
-                <div class="w-[90%] max-w-[1200px] mx-auto">
+            <section class="py-[150px] text-center"> <!-- py-[100px] * 1.5 = py-[150px] -->
+                <div class="w-[90%] max-w-[1800px] mx-auto">
                     <div class="section-title">
-                        <h2 class="text-[2.8rem] font-extrabold text-white uppercase leading-tight mb-[60px] relative inline-block">
+                        <h2 class="text-[4.2rem] font-extrabold text-white uppercase leading-tight mb-[90px] relative inline-block"> <!-- text-[2.8rem] * 1.5 = text-[4.2rem], mb-[60px] * 1.5 = mb-[90px] -->
                             Cam kết và Bảo mật
-                            <span class="absolute left-1/2 -bottom-5 -translate-x-1/2 w-2.5 h-2.5 bg-yellow-secondary rounded-full" style="box-shadow: 0 0 15px 5px rgba(246, 184, 76, 0.7)"></span>
+                            <span class="absolute left-1/2 -bottom-8 -translate-x-1/2 w-4 h-4 bg-yellow-secondary rounded-full" style="box-shadow: 0 0 23px 8px rgba(246, 184, 76, 0.7)"></span> <!-- -bottom-5 * 1.5 = -bottom-8, w-2.5 * 1.5 = w-4, h-2.5 * 1.5 = h-4, box-shadow: 0 0 15px 5px * 1.5 = box-shadow: 0 0 23px 8px -->
                         </h2>
                     </div>
-                    <div class="flex justify-center gap-[30px] mb-20">
-                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[15px] p-[30px] w-[30%] max-w-[350px] text-purple-light text-[0.95rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
+                    <div class="flex justify-center gap-[45px] mb-30"> <!-- gap-[30px] * 1.5 = gap-[45px], mb-20 * 1.5 = mb-30 -->
+                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[23px] p-[45px] w-[30%] max-w-[525px] text-purple-light text-[1.43rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary"> <!-- rounded-[15px] * 1.5 = rounded-[23px], p-[30px] * 1.5 = p-[45px], max-w-[350px] * 1.5 = max-w-[525px], text-[0.95rem] * 1.5 = text-[1.43rem] -->
                             <p>Ban Tổ chức Chương trình cam kết bảo mật thông tin đối với những hồ sơ, số liệu mà đối tượng dự tuyển yêu cầu bảo mật.</p>
                         </div>
-                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[15px] p-[30px] w-[30%] max-w-[350px] text-purple-light text-[0.95rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
+                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[23px] p-[45px] w-[30%] max-w-[525px] text-purple-light text-[1.43rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
                             <p>Các tổ chức, cá nhân tự chịu trách nhiệm về quyền sở hữu trí tuệ liên quan đến các hồ sơ tham dự chương trình.</p>
                         </div>
-                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[15px] p-[30px] w-[30%] max-w-[350px] text-purple-light text-[0.95rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
+                        <div class="bg-purple-medium-alpha-50 border border-white/20 rounded-[23px] p-[45px] w-[30%] max-w-[525px] text-purple-light text-[1.43rem] leading-[1.7] text-left transition-all duration-300 ease-in-out hover:scale-105 hover:border-yellow-primary">
                             <p>Trong trường hợp phát hiện các vi phạm liên quan đến quyền sở hữu trí tuệ và các hình thức vi phạm khác, Ban Tổ chức chương trình được quyền loại hồ sơ dự tuyển, hủy kết quả công nhận.</p>
                         </div>
                     </div>
                     <div class="w-full overflow-hidden flex justify-center">
                         <div class="flex w-max animate-marquee">
-                            <div class="flex shrink-0 items-center gap-[50px] px-[25px]">
-                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                            <div class="flex shrink-0 items-center gap-[75px] px-[38px]"> <!-- gap-[50px] * 1.5 = gap-[75px], px-[25px] * 1.5 = px-[38px] -->
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy"> <!-- max-h-[50px] * 1.5 = max-h-[75px] -->
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
                             </div>
-                            <div class="flex shrink-0 items-center gap-[50px] px-[25px]">
-                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
-                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[50px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                            <div class="flex shrink-0 items-center gap-[75px] px-[38px]">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 12.png" alt="BlockBase" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 14.png" alt="New World Fintech" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
+                                <img src="images/Asset 13.png" alt="Shinhan Future's Lab" class="max-h-[75px] grayscale brightness-150 opacity-70 transition-all duration-300 ease-in-out hover:grayscale-0 hover:opacity-100 hover:scale-110" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -380,30 +1130,30 @@
         </div>
     </main>
 
-    <footer class="bg-gradient-to-r from-yellow-primary via-[#fef9c3] to-purple-dark text-white pt-[50px] pb-[50px] relative overflow-hidden">
-        <div class="w-[90%] max-w-[1200px] mx-auto relative z-10">
-            <div class="flex justify-between gap-10">
+    <footer id="contact" class="bg-gradient-to-r from-yellow-primary via-[#fef9c3] to-purple-dark text-white pt-[75px] pb-[75px] relative overflow-hidden"> <!-- pt-[50px] * 1.5 = pt-[75px], pb-[50px] * 1.5 = pb-[75px] -->
+        <div class="w-[90%] max-w-[1800px] mx-auto relative z-10">
+            <div class="flex justify-between gap-15"> <!-- gap-10 * 1.5 = gap-15 -->
                 <div class="w-[35%]">
-                    <h4 class="text-[1.4rem] font-extrabold uppercase mt-0">Thông tin liên hệ</h4>
+                    <h4 class="text-[2.1rem] font-extrabold uppercase mt-0">Thông tin liên hệ</h4> <!-- text-[1.4rem] * 1.5 = text-[2.1rem] -->
                     <ul class="list-none p-0 m-0">
-                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">👤</span>Ms. Vũ Thị Thu Hà</li>
-                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">🏢</span>Phòng Đối mới Sáng tạo và Khởi nghiệp</li>
-                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">✉</span>Email: thuha@sihub.gov.vn</li>
-                        <li class="mb-[15px] text-base font-semibold flex items-center"><span class="mr-[15px] text-[1.5rem] text-white">☎</span>Phone: 0974544409</li>
+                        <li class="mb-[23px] text-[1.5rem] font-semibold flex items-center"><span class="mr-[23px] text-[2.25rem] text-white">👤</span>Ms. Vũ Thị Thu Hà</li> <!-- mb-[15px] * 1.5 = mb-[23px], text-base * 1.5 = text-[1.5rem], mr-[15px] * 1.5 = mr-[23px], text-[1.5rem] * 1.5 = text-[2.25rem] -->
+                        <li class="mb-[23px] text-[1.5rem] font-semibold flex items-center"><span class="mr-[23px] text-[2.25rem] text-white">🏢</span>Phòng Đối mới Sáng tạo và Khởi nghiệp</li>
+                        <li class="mb-[23px] text-[1.5rem] font-semibold flex items-center"><span class="mr-[23px] text-[2.25rem] text-white">✉</span>Email: thuha@sihub.gov.vn</li>
+                        <li class="mb-[23px] text-[1.5rem] font-semibold flex items-center"><span class="mr-[23px] text-[2.25rem] text-white">☎</span>Phone: 0974544409</li>
                     </ul>
                 </div>
                 <div class="w-[60%] flex flex-col items-end text-right">
-                    <div class="mb-[30px]">
-                        <h5 class="text-[1.2rem] font-extrabold m-0 mb-[5px]">Sở Khoa học và Công nghệ <span class="text-[1.5rem] align-middle">📍</span></h5>
-                        <p class="m-0 text-base font-semibold">Trung tâm Khởi nghiệp sáng tạo Tp. Hồ Chí Minh</p>
-                        <p class="m-0 text-base font-semibold">273 Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh</p>
+                    <div class="mb-[45px]"> <!-- mb-[30px] * 1.5 = mb-[45px] -->
+                        <h5 class="text-[1.8rem] font-extrabold m-0 mb-[8px]">Sở Khoa học và Công nghệ <span class="text-[2.25rem] align-middle">📍</span></h5> <!-- text-[1.2rem] * 1.5 = text-[1.8rem], mb-[5px] * 1.5 = mb-[8px], text-[1.5rem] * 1.5 = text-[2.25rem] -->
+                        <p class="m-0 text-[1.5rem] font-semibold">Trung tâm Khởi nghiệp sáng tạo Tp. Hồ Chí Minh</p> <!-- text-base * 1.5 = text-[1.5rem] -->
+                        <p class="m-0 text-[1.5rem] font-semibold">273 Điện Biên Phủ, Phường Xuân Hòa, TP. Hồ Chí Minh</p>
                     </div>
-                    <div class="flex gap-5">
+                    <div class="flex gap-8"> <!-- gap-5 * 1.5 = gap-8 -->
                         <div>
-                            <img src="images/Asset 10.png" alt="Quét mã đăng ký" class="max-w-[250px]" loading="lazy">
+                            <img src="images/Asset 10.png" alt="Quét mã đăng ký" class="max-w-[375px]" loading="lazy"> <!-- max-w-[250px] * 1.5 = max-w-[375px] -->
                         </div>
                         <div>
-                            <img src="images/Asset 9.png" alt="Tải form đăng ký" class="max-w-[250px]" loading="lazy">
+                            <img src="images/Asset 9.png" alt="Tải form đăng ký" class="max-w-[375px]" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -481,6 +1231,64 @@
                 }
             },
             detectRetina: true
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('toggle-info-btn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const p = document.getElementById('info-p');
+                    p.classList.toggle('expanded');
+                    if (p.classList.contains('expanded')) {
+                        this.textContent = 'THU GỌN';
+                    } else {
+                        this.textContent = 'XEM THÊM';
+                    }
+                });
+            }
+        });
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobile-nav');
+            const btn = document.querySelector('.mobile-menu-btn');
+            
+            nav.classList.toggle('active');
+            btn.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (nav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeMobileMenu() {
+            const nav = document.getElementById('mobile-nav');
+            const btn = document.querySelector('.mobile-menu-btn');
+            
+            nav.classList.remove('active');
+            btn.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('mobile-nav');
+            const btn = document.querySelector('.mobile-menu-btn');
+            
+            if (!nav.contains(e.target) && !btn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
